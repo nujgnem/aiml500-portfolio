@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A practical comparison of traditional machine learning and deep learning by Mengjun Duan.">
+  <title>Machine Learning vs. Deep Learning Case Study | Mengjun Duan</title>
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../scripts/site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <div class="page-grid">
+      <a class="wordmark" href="../index.html">Mengjun Duan</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="../work.html" data-nav-page="work.html ml-vs-deep-learning.html">Work <span class="status-dot" hidden></span></a>
+        <a href="../about.html" data-nav-page="about.html">About <span class="status-dot" hidden></span></a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content">
+    <header class="case-hero dark-section page-grid">
+      <p class="eyebrow">Selected Work / 02</p>
+      <h1>Choosing the Right Model for the Problem</h1>
+      <p class="case-premise">A practical comparison of traditional machine learning and deep learning through email filtering and visual quality inspection.</p>
+      <dl class="case-facts">
+        <div><dt>Year</dt><dd>2026</dd></div>
+        <div><dt>Role</dt><dd>Analysis, model selection, technical communication</dd></div>
+        <div><dt>Medium</dt><dd>AI/ML case study</dd></div>
+      </dl>
+    </header>
+
+    <section class="case-band page-grid" aria-labelledby="context-title">
+      <h2 id="context-title" class="section-title">Context</h2>
+      <div class="body-copy">
+        <p>Teams sometimes treat deep learning as the automatic next step for any AI project. That can add data, computing, and monitoring costs without solving the actual problem better.</p>
+        <p>This case study compares two applications that need different approaches. The goal is to show how the form of the data, the need for explanation, available resources, and the cost of a wrong answer affect model choice.</p>
+      </div>
+    </section>
+
+    <section class="case-band dark-section page-grid" aria-labelledby="framework-title">
+      <h2 id="framework-title" class="section-title">Decision Framework</h2>
+      <ol class="detail-list decision-strip" aria-label="Model selection questions">
+        <li><span>01 / Data</span><span>Is the useful information already structured, or must the model learn patterns from raw images, audio, or text?</span></li>
+        <li><span>02 / Explanation</span><span>How clearly must a person trace and challenge the model's decision?</span></li>
+        <li><span>03 / Resources</span><span>How much labeled data, computing power, and maintenance capacity can the project support?</span></li>
+        <li><span>04 / Consequences</span><span>What happens when the model misses a case or creates a false alarm?</span></li>
+      </ol>
+    </section>
+
+    <section class="case-band page-grid" aria-labelledby="comparison-title">
+      <h2 id="comparison-title" class="section-title">Two Applications</h2>
+      <div class="comparison-grid">
+        <p class="comparison-intro">Traditional machine learning works from clues people choose; deep learning learns useful clues directly from many examples.</p>
+        <article class="comparison-panel">
+          <p class="comparison-label">Traditional machine learning</p>
+          <h3>Email spam filtering</h3>
+          <p>An email gateway can learn from messages that people labeled as spam or legitimate. The system converts text and metadata into features such as sender reputation, suspicious links, repeated terms, attachment type, and message length.</p>
+          <p>A logistic regression model or decision tree is practical here because the organization can inspect the signals behind a flag. It can retrain the model without the large data and computing requirements of a deep network.</p>
+          <dl class="comparison-facts">
+            <div><dt>Best fit</dt><dd>Defined features and moderate data</dd></div>
+            <div><dt>Strength</dt><dd>Clearer inspection and simpler retraining</dd></div>
+            <div><dt>Risk to monitor</dt><dd>Changing spam tactics and false positives</dd></div>
+          </dl>
+        </article>
+        <article class="comparison-panel comparison-panel-dark">
+          <p class="comparison-label">Deep learning</p>
+          <h3>Manufacturing image inspection</h3>
+          <p>A factory can use a convolutional neural network, or CNN, to check product images for scratches, cracks, missing parts, or misalignment. The system receives product images instead of a short list of features that someone has already selected.</p>
+          <p>A CNN can learn visual patterns that remain useful when lighting, camera angle, or defect position changes. Hand-designed image features become fragile when the variation grows beyond the conditions they were built to recognize.</p>
+          <dl class="comparison-facts">
+            <div><dt>Best fit</dt><dd>Complex visual data with repeated examples</dd></div>
+            <div><dt>Strength</dt><dd>Automatic feature learning across variation</dd></div>
+            <div><dt>Risk to monitor</dt><dd>Missed defects, false alarms, and data gaps</dd></div>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-band dark-section page-grid" aria-labelledby="tradeoffs-title">
+      <h2 id="tradeoffs-title" class="section-title">Tradeoffs</h2>
+      <div class="body-copy">
+        <p>A deep network could analyze the full text of an email and may be worthwhile for a provider with extensive training data. A smaller organization may get a more maintainable system from engineered features that already capture the important signals.</p>
+        <p>A traditional image classifier can work when products, lighting, and camera position rarely change. Once those conditions vary, a CNN has a better chance of learning the visual differences that matter. It also requires representative labeled images, more computing power, and careful testing.</p>
+      </div>
+    </section>
+
+    <section class="case-band page-grid" aria-labelledby="outcome-title">
+      <h2 id="outcome-title" class="section-title">Outcome</h2>
+      <div class="body-copy">
+        <p>The comparison led me away from asking which model is more advanced. I now start with the evidence available to the model and the consequence of a mistake. That makes the choice easier to explain to people who will fund, operate, or be affected by the system.</p>
+        <p>The spam filter benefits from a model the organization can retrain and inspect. The inspection system faces a different problem because the important clue is inside the image and may look different from one photograph to the next.</p>
+      </div>
+    </section>
+
+    <section class="case-band dark-section page-grid" aria-labelledby="evidence-title">
+      <h2 id="evidence-title" class="section-title">Course Evidence</h2>
+      <div>
+        <ul class="detail-list" aria-label="Project evidence">
+          <li><span>Course</span><span>AIML-500 Machine Learning Fundamentals</span></li>
+          <li><span>Source artifact</span><span>Workshop Two 2.3 Machine Learning vs. Deep Learning report</span></li>
+          <li><span>Audience</span><span>Beginning AI/ML learners and nontechnical stakeholders</span></li>
+          <li><span>Skills</span><span>Model-selection reasoning, tradeoff analysis, and technical communication</span></li>
+        </ul>
+        <p class="body-copy evidence-note">ChatGPT supported learning, drafting, and organization. I reviewed the reasoning, selected the examples, revised the explanations, and made the final presentation decisions.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="page-grid"><p>Website created by Mengjun Duan.</p></div></footer>
+</body>
+</html>
+

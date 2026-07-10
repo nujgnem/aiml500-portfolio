@@ -1,12 +1,33 @@
 # AIML-500 Portfolio
 
-Static portfolio page for AIML-500 Machine Learning Fundamentals.
+Desktop-first static portfolio for AIML-500 Machine Learning Fundamentals.
 
-## Contents
+## Pages
 
-- `index.html` - portfolio homepage and Artifact 1 page
-- `hero-ai-ml-portfolio.png` - hero illustration
-- `ai-ml-timeline.png` - Artifact 1 timeline image
+- `index.html` - concise portfolio homepage.
+- `projects/ai-ml-timeline.html` - Artifact 1 case study.
+- `projects/ml-vs-deep-learning.html` - Artifact 2 model-selection case study.
+- `work.html` - index linking to both portfolio artifacts.
+- `styles.css` - shared typography, layout, and component styles.
 
-Artifact 1: **From Symbolic Rules to Generative Systems: AI and ML Timeline**
+## Assets
+
+- `assets/images/timeline-work-wide.webp` - Work-page image.
+- `assets/images/timeline-case-detail.webp` - case-study detail image.
+- `assets/images/timeline-poster.webp` - case-study poster image.
+- `hero-ai-ml-portfolio.png` - preserved full-resolution course source.
+- `ai-ml-timeline.png` - preserved full-resolution Artifact 1.
+
+## Local Validation
+
+- `scripts/build_site_images.py` regenerates the three timeline WebP images from the original Artifact 1 PNG.
+- `scripts/verify_site.ps1` starts a temporary local server, checks every public URL, and stops the server.
+
+Run URL validation from the course root:
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File 'aiml500-portfolio\scripts\verify_site.ps1'
+```
+
+Artifact 2 is integrated locally. Public deployment and link visibility must be verified separately before course submission.
 
