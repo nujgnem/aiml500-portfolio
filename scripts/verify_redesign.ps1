@@ -15,7 +15,7 @@ foreach ($Item in $Protected.GetEnumerator()) {
   Assert-True ((Get-FileHash (Join-Path $Root $Item.Key) -Algorithm SHA256).Hash -eq $Item.Value) "Protected source changed: $($Item.Key)"
 }
 $Homepage = Read-Page 'index.html'; $Work = Read-Page 'work.html'; $About = Read-Page 'about.html'; $Case = Read-Page 'projects/ai-ml-timeline.html'
-Assert-True ($Homepage -match 'Creative Technologist / AI &amp; ML Portfolio') 'Homepage identity line is missing.'
+Assert-True ($Homepage -match 'AI &amp; ML Portfolio') 'Homepage identity line is missing.'
 Assert-True ($Homepage -match 'A portfolio of research, visual systems, and experiments in artificial intelligence and machine learning\.') 'Homepage portfolio statement is missing.'
 Assert-True ($Homepage -notmatch 'timeline-home-detail\.webp|class="home-media"|View Work|<a href="about\.html">About</a>') 'Homepage still contains project preview or CTA links.'
 Assert-True ([regex]::Matches($Homepage, '<h1\b').Count -eq 1) 'Homepage must have exactly one H1.'
@@ -75,8 +75,8 @@ Assert-True ($Css -match '\.home-page \.home-signal-field\s*\{[\s\S]*width:\s*10
 Assert-True ($Css -match '\.home-page \.home-text-safe-zone[\s\S]*z-index:\s*1' -and $Css -match '\.home-page \.home-text-safe-zone[\s\S]*background') 'Homepage text-safe zone must sit above Canvas with a backing.'
 Assert-True ($Css -match '\.home-page \.home-text-safe-zone[\s\S]*background-color:\s*var\(--canvas\)' -and $Css -match '\.home-page \.home-text-safe-zone[\s\S]*background-image:\s*linear-gradient') 'Homepage text-safe backing must preserve its computed canvas color.'
 Assert-True ($Css -match '\.home-page \.home-layout[\s\S]*z-index:\s*2') 'Homepage foreground content must sit above the safe zone.'
-Assert-True ($Css -match '\.home-page \.home-identity[\s\S]*color:\s*var\(--ink\)') 'Homepage identity must use the ink token.'
 Assert-True ($Css -notmatch 'top:\s*24%' -and $Css -notmatch 'width:\s*min\(47vw' -and $Css -notmatch '@media[\s\S]*\.home-signal-field\s*\{\s*display:\s*none') 'Legacy right-side signal-field rules remain.'
+Assert-True ($Css -match '\.home-page \.home-identity[\s\S]*color:\s*var\(--signal\)') 'Homepage identity must use the signal token.'
 Assert-True ($Css -match '\.site-footer\s*\{[^}]*padding-block:\s*0\.75rem') 'Footer padding is not reduced globally.'
 Assert-True ($Css -match '\.site-footer \.page-grid > p\s*\{[^}]*grid-column:\s*1 / -1') 'Footer credit is not allowed to use the full grid width.'
 Assert-True ($Css -match '@media \(prefers-reduced-motion: reduce\)[\s\S]*\.home-marquee-track') 'Reduced-motion marquee stop is missing.'

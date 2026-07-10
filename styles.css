@@ -74,9 +74,10 @@ button:focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
 
 .wordmark {
   grid-column: 1 / span 4;
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   font-weight: 760;
   letter-spacing: -0.03em;
+  line-height: 1.1;
   text-decoration: none;
 }
 
@@ -354,6 +355,8 @@ main { padding-top: 4.5rem; }
 
 .home-page .home-marquee {
   grid-column: 1 / -1;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
   min-width: 0;
   overflow: hidden;
   padding-block: 0.3rem 0.55rem;
@@ -369,10 +372,10 @@ main { padding-top: 4.5rem; }
 
 .home-page .home-marquee-copy {
   flex: 0 0 auto;
-  padding-right: 2rem;
+  padding-right: 2.75rem;
   font-size: clamp(3.5rem, 7vw, 7.5rem);
   font-weight: 680;
-  letter-spacing: -0.075em;
+  letter-spacing: -0.02em;
   line-height: 0.88;
   white-space: nowrap;
 }
@@ -384,11 +387,11 @@ main { padding-top: 4.5rem; }
 .home-page .home-identity {
   grid-column: 1 / span 5;
   margin: clamp(6rem, 15vh, 11rem) 0 0;
-  color: var(--ink);
-  font-size: clamp(0.9rem, 1.15vw, 1.1rem);
+  color: var(--signal);
+  font-size: 3rem;
   font-weight: 720;
-  letter-spacing: 0.055em;
-  line-height: 1.2;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
   text-transform: uppercase;
 }
 
