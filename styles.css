@@ -427,41 +427,6 @@ body:has(.work-page) .site-header {
 body:has(.work-page) :is(.wordmark, .site-nav a) { color: var(--light-ink); }
 body:has(.work-page) .site-nav a[aria-current="page"] { color: var(--light-ink); }
 
-.work-intro { padding-block: clamp(7rem, 13vw, 13rem) clamp(3rem, 6vw, 6rem); }
-
-.work-intro .eyebrow,
-.work-intro > .eyebrow { grid-column: 1 / span 3; }
-
-.work-intro :is(.page-title, .display-title),
-.work-intro > :is(.page-title, .display-title) {
-  grid-column: 1 / span 9;
-  margin-top: 1.25rem;
-}
-
-.work-intro > h1 {
-  grid-column: 1 / span 9;
-  margin: 1.25rem 0 0;
-  font-size: clamp(3.25rem, 7.2vw, 8rem);
-  font-weight: 680;
-  letter-spacing: -0.07em;
-  line-height: 0.9;
-  text-wrap: balance;
-}
-
-.work-intro :is(.intro-copy, .body-copy),
-.work-intro > :is(.intro-copy, .body-copy) {
-  grid-column: 7 / span 5;
-  margin-top: 2rem;
-  color: var(--light-ink);
-}
-
-.work-intro > .work-meta {
-  grid-column: 7 / span 5;
-  margin: 2rem 0 0;
-  color: var(--light-ink);
-  font-size: 0.9rem;
-}
-
 .work-project { padding-block: clamp(3rem, 7vw, 7rem) clamp(5rem, 10vw, 10rem); }
 
 .work-project .page-grid,
@@ -668,14 +633,6 @@ body:has(.work-page) .site-nav a[aria-current="page"] { color: var(--light-ink);
   .intro-band .page-title,
   .hero-band .intro-copy,
   .intro-band .intro-copy,
-  .work-intro .eyebrow,
-  .work-intro > .eyebrow,
-  .work-intro :is(.page-title, .display-title),
-  .work-intro > :is(.page-title, .display-title),
-  .work-intro > h1,
-  .work-intro :is(.intro-copy, .body-copy),
-  .work-intro > :is(.intro-copy, .body-copy),
-  .work-intro > .work-meta,
   .work-project > img,
   .work-project > p,
   .work-project > span,
@@ -729,13 +686,6 @@ body:has(.work-page) .site-nav a[aria-current="page"] { color: var(--light-ink);
     width: 100%;
     background-image: linear-gradient(90deg, var(--canvas) 0 78%, color-mix(in srgb, var(--canvas) 88%, transparent) 93%, transparent 100%);
   }
-
-  .work-intro :is(.page-title, .display-title),
-  .work-intro > :is(.page-title, .display-title),
-  .work-intro > h1,
-  .work-intro :is(.intro-copy, .body-copy),
-  .work-intro > :is(.intro-copy, .body-copy),
-  .work-intro > .work-meta { margin-top: 1.25rem; }
 
   .work-project :is(figure, .work-project-media),
   .work-project > :is(figure, .work-project-media),
