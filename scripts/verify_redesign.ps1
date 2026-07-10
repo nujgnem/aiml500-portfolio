@@ -55,8 +55,7 @@ foreach ($Page in @($Homepage, $Work, $About, $Case)) {
 Assert-True ($Case -match 'data-nav-page="work.html ai-ml-timeline.html"') 'Case-study Work navigation does not declare its current route.'
 Assert-True ($Work -match 'timeline-work-wide.webp" alt="Wide detail from the AI and machine learning timeline" width="1600" height="900" loading="lazy"') 'Work media lacks stable lazy-loaded dimensions.'
 Assert-True ($Case -match 'timeline-poster.webp" alt="Full radial timeline of AI and machine learning milestones from 1950 through 2026" width="1000" height="1500" loading="lazy"') 'Case poster lacks stable lazy-loaded dimensions.'
-Assert-True ($Case -match 'timeline-case-detail.webp" alt="Detail from the radial AI and machine learning timeline" width="1200" height="1200" loading="lazy"') 'Case detail lacks stable lazy-loaded dimensions.'
-foreach ($Asset in @('assets/fonts/Archivo-VariableFont_wdth,wght.woff2','assets/images/timeline-work-wide.webp','assets/images/timeline-case-detail.webp','assets/images/timeline-poster.webp')) {
+foreach ($Asset in @('assets/fonts/Archivo-VariableFont_wdth,wght.woff2','assets/images/timeline-work-wide.webp','assets/images/timeline-poster.webp')) {
   Assert-True (Test-Path (Join-Path $Root $Asset)) "Missing redesign asset: $Asset"
 }
 $Css = Get-Content -Raw -Encoding UTF8 (Join-Path $Root 'styles.css')
@@ -68,7 +67,6 @@ Assert-True ($Css -match '\.site-nav \{[\s\S]*font-size:\s*0\.8125rem') 'Primary
 Assert-True ($Css -match '\.site-nav a\[aria-current="page"\] \{ color: var\(--ink\); \}') 'Light-header active navigation text lacks accessible contrast.'
 Assert-True ($Css -match '\.work-project > img \{[\s\S]*aspect-ratio:\s*16 / 9') 'Work image aspect ratio is missing.'
 Assert-True ($Css -match '\.poster-image \{[\s\S]*aspect-ratio:\s*2 / 3') 'Poster image aspect ratio is missing.'
-Assert-True ($Css -match '\.case-image \{[\s\S]*aspect-ratio:\s*1') 'Case image aspect ratio is missing.'
 Assert-True ($Css -match '\.home-marquee-track[\s\S]*animation:') 'Homepage marquee animation is missing.'
 Assert-True ($Css -match '\.home-signal-field[\s\S]*pointer-events:\s*none') 'Signal canvas must not receive pointer events.'
 Assert-True ($Css -match '\.home-page \.home-hero\s*\{[\s\S]*min-height:\s*calc\(100svh - 4\.5rem\)[\s\S]*padding:\s*0') 'Homepage hero must fill the viewport beneath the fixed header.'
@@ -79,8 +77,8 @@ Assert-True ($Css -match '\.home-page \.home-text-safe-zone[\s\S]*background-col
 Assert-True ($Css -match '\.home-page \.home-layout[\s\S]*z-index:\s*2') 'Homepage foreground content must sit above the safe zone.'
 Assert-True ($Css -match '\.home-page \.home-identity[\s\S]*color:\s*var\(--ink\)') 'Homepage identity must use the ink token.'
 Assert-True ($Css -notmatch 'top:\s*24%' -and $Css -notmatch 'width:\s*min\(47vw' -and $Css -notmatch '@media[\s\S]*\.home-signal-field\s*\{\s*display:\s*none') 'Legacy right-side signal-field rules remain.'
-Assert-True ($Css -match '\.home-page \.site-footer') 'Homepage footer reduction is not scoped.'
-Assert-True ($Css -match '\.home-page \.site-footer\s*\{[^}]*padding-block:\s*1rem') 'Homepage footer is not reduced to 1rem padding.'
+Assert-True ($Css -match '\.site-footer\s*\{[^}]*padding-block:\s*0\.75rem') 'Footer padding is not reduced globally.'
+Assert-True ($Css -match '\.site-footer \.page-grid > p\s*\{[^}]*grid-column:\s*1 / -1') 'Footer credit is not allowed to use the full grid width.'
 Assert-True ($Css -match '@media \(prefers-reduced-motion: reduce\)[\s\S]*\.home-marquee-track') 'Reduced-motion marquee stop is missing.'
 $ReducedMotionCss = [regex]::Match($Css, '@media \(prefers-reduced-motion: reduce\)[\s\S]*$').Value
 Assert-True ($ReducedMotionCss -match '\.home-page \.home-marquee-track' -and $ReducedMotionCss -notmatch '(?m)^\s*\*,\s*$') 'Reduced-motion marquee and canvas reset must stay scoped to .home-page.'
