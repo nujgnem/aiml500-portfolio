@@ -7,6 +7,7 @@
   <title>Mengjun Duan | Creative Technologist</title>
   <link rel="stylesheet" href="styles.css">
   <script src="scripts/site.js" defer></script>
+  <script type="module" src="scripts/home-signal-field.mjs"></script>
 </head>
 <body class="home-page">
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -21,15 +22,12 @@
   </header>
   <main id="main-content">
     <section class="home-hero" aria-labelledby="home-title">
-      <canvas class="home-signal-field" aria-hidden="true" data-signal-cadence="8"></canvas>
-      <div class="home-text-safe-zone" aria-hidden="true"></div>
+      <canvas class="home-signal-field" aria-hidden="true" hidden data-signal-state="fallback" data-signal-cadence="8"></canvas>
       <div class="home-layout page-grid">
-        <h1 id="home-title" class="home-title">Mengjun Duan</h1>
-        <div class="home-marquee" aria-hidden="true">
-          <div class="home-marquee-track">
-            <span class="home-marquee-copy" aria-hidden="true">Mengjun Duan · Creative Technologist ·</span>
-            <span class="home-marquee-copy" aria-hidden="true">Mengjun Duan · Creative Technologist ·</span>
-          </div>
+        <h1 id="home-title" class="home-title"><span class="home-title-line">Mengjun</span> <span class="home-title-line">Duan</span></h1>
+        <div class="home-signal-ticker" aria-hidden="true">
+          <span>MENGJUN DUAN / CREATIVE TECHNOLOGIST / AI &amp; ML PORTFOLIO / RESEARCH / VISUAL SYSTEMS / EXPERIMENTS /</span>
+          <span>MENGJUN DUAN / CREATIVE TECHNOLOGIST / AI &amp; ML PORTFOLIO / RESEARCH / VISUAL SYSTEMS / EXPERIMENTS /</span>
         </div>
         <p class="home-identity">AI &amp; ML Portfolio</p>
         <p class="home-statement">A portfolio of research, visual systems, and experiments in artificial intelligence and machine learning.</p>

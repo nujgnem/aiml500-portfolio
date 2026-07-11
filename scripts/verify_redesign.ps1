@@ -19,10 +19,12 @@ Assert-True ($Homepage -match 'AI &amp; ML Portfolio') 'Homepage identity line i
 Assert-True ($Homepage -match 'A portfolio of research, visual systems, and experiments in artificial intelligence and machine learning\.') 'Homepage portfolio statement is missing.'
 Assert-True ($Homepage -notmatch 'timeline-home-detail\.webp|class="home-media"|View Work|<a href="about\.html">About</a>') 'Homepage still contains project preview or CTA links.'
 Assert-True ([regex]::Matches($Homepage, '<h1\b').Count -eq 1) 'Homepage must have exactly one H1.'
-Assert-True ($Homepage -match '<h1[^>]*>Mengjun Duan</h1>' -and $Homepage -notmatch '<h1[^>]*aria-hidden') 'Homepage H1 must expose Mengjun Duan to assistive technology.'
+Assert-True ($Homepage -match '<h1[^>]*id="home-title"[^>]*>' -and $Homepage -notmatch '<h1[^>]*aria-hidden') 'Homepage H1 must expose the title to assistive technology.'
+Assert-True ([regex]::Matches($Homepage, 'class="home-title-line"').Count -eq 2 -and $Homepage -match 'class="home-title-line">Mengjun</span>' -and $Homepage -match 'class="home-title-line">Duan</span>') 'Homepage title must use the approved two-line title spans.'
 Assert-True ($Homepage -match '<canvas class="home-signal-field" aria-hidden="true"') 'Homepage signal canvas is missing or exposed to assistive technology.'
-Assert-True ($Homepage -match '<canvas class="home-signal-field" aria-hidden="true"[^>]*></canvas>\s*<div class="home-text-safe-zone" aria-hidden="true"></div>') 'Homepage text-safe zone must be the Canvas sibling.'
-Assert-True ($Homepage -match 'class="home-marquee-copy" aria-hidden="true"') 'Homepage marquee duplicates are not hidden from assistive technology.'
+Assert-True ($Homepage -match 'class="home-signal-ticker" aria-hidden="true"') 'Homepage signal ticker is missing or exposed to assistive technology.'
+Assert-True ($Homepage -notmatch 'home-text-safe-zone|home-marquee') 'Homepage still contains legacy safe-zone or marquee markup.'
+Assert-True ($Homepage -notmatch 'home-signal-lab|home-signal-control-panel\.mjs') 'SIGNAL LAB must be dynamically local-only, not homepage markup.'
 Assert-True ($Work -match 'Selected Work' -and $Work -match 'projects/ai-ml-timeline.html' -and $Work -match 'projects/ml-vs-deep-learning.html') 'Work-page project links are missing.'
 $AboutStatements = @(
   "I'm a Creative Technologist interested in what happens when AI and machine learning leave the diagram and enter people's lives. A model starts with data, rules, and probabilities. Then it becomes an image tool, an interface, a recommendation, or a decision that affects someone else. That transition is where I like to work.",
@@ -67,33 +69,41 @@ Assert-True ($Css -match '\.site-nav \{[\s\S]*font-size:\s*0\.8125rem') 'Primary
 Assert-True ($Css -match '\.site-nav a\[aria-current="page"\] \{ color: var\(--ink\); \}') 'Light-header active navigation text lacks accessible contrast.'
 Assert-True ($Css -match '\.work-project > img \{[\s\S]*aspect-ratio:\s*16 / 9') 'Work image aspect ratio is missing.'
 Assert-True ($Css -match '\.poster-image \{[\s\S]*aspect-ratio:\s*2 / 3') 'Poster image aspect ratio is missing.'
-Assert-True ($Css -match '\.home-marquee-track[\s\S]*animation:') 'Homepage marquee animation is missing.'
+foreach ($Variable in @('--signal-cell-desktop:\s*44px', '--signal-cell-narrow:\s*54px', '--signal-outer-density:\s*\.14', '--signal-title-density:\s*\.78', '--signal-copy-clearance:\s*1\.25')) {
+  Assert-True ($Css -match $Variable) "Missing homepage signal variable: $Variable"
+}
 Assert-True ($Css -match '\.home-signal-field[\s\S]*pointer-events:\s*none') 'Signal canvas must not receive pointer events.'
 Assert-True ($Css -match '\.home-page \.home-hero\s*\{[\s\S]*min-height:\s*calc\(100svh - 4\.5rem\)[\s\S]*padding:\s*0') 'Homepage hero must fill the viewport beneath the fixed header.'
 Assert-True ($Css -match '\.home-page \.home-signal-field\s*\{[\s\S]*inset:\s*0[;}]') 'Homepage signal canvas must cover the full hero.'
 Assert-True ($Css -match '\.home-page \.home-signal-field\s*\{[\s\S]*width:\s*100%[;}]' -and $Css -match '\.home-page \.home-signal-field\s*\{[\s\S]*height:\s*100%[;}]') 'Homepage signal canvas must size to the full hero.'
-Assert-True ($Css -match '\.home-page \.home-text-safe-zone[\s\S]*z-index:\s*1' -and $Css -match '\.home-page \.home-text-safe-zone[\s\S]*background') 'Homepage text-safe zone must sit above Canvas with a backing.'
-Assert-True ($Css -match '\.home-page \.home-text-safe-zone[\s\S]*background-color:\s*var\(--canvas\)' -and $Css -match '\.home-page \.home-text-safe-zone[\s\S]*background-image:\s*linear-gradient') 'Homepage text-safe backing must preserve its computed canvas color.'
-Assert-True ($Css -match '\.home-page \.home-layout[\s\S]*z-index:\s*2') 'Homepage foreground content must sit above the safe zone.'
-Assert-True ($Css -notmatch 'top:\s*24%' -and $Css -notmatch 'width:\s*min\(47vw' -and $Css -notmatch '@media[\s\S]*\.home-signal-field\s*\{\s*display:\s*none') 'Legacy right-side signal-field rules remain.'
+Assert-True ($Css -notmatch 'home-text-safe-zone|home-marquee') 'Legacy safe-zone or marquee styling remains.'
+Assert-True ($Css -notmatch '\.home-page \.home-hero::before') 'Homepage crosshair must not be permanently rendered in CSS.'
+Assert-True ($Css -match '\.home-page \.home-title\s*\{[\s\S]*z-index:\s*2' -and $Css -match '\.home-page \.home-signal-ticker\s*\{[\s\S]*z-index:\s*3') 'Homepage title and ticker layers are not ordered.'
+Assert-True ($Css -match '\[data-signal-ready="true"\] \.home-title\s*\{[\s\S]*-webkit-text-fill-color:\s*transparent[\s\S]*-webkit-text-stroke:\s*1px var\(--ink\)') 'Signal-ready title stroke styling is missing.'
+Assert-True ($Css -match '\.home-page \.home-signal-ticker\s*\{[\s\S]*color:\s*var\(--signal\)[\s\S]*text-transform:\s*uppercase') 'Homepage ticker must be thin, uppercase, and signal colored.'
+Assert-True ($Css -match '\[data-signal-ready="true"\] \.home-signal-ticker span\s*\{[\s\S]*animation:\s*home-signal-ticker-scroll' -and $Css -match '@keyframes home-signal-ticker-scroll') 'Homepage ticker must move continuously only after signal rendering is ready.'
+Assert-True ($Css -match 'not\(\[data-signal-ready="true"\]\) \.home-signal-ticker span\s*\{[\s\S]*animation:\s*none') 'Fallback ticker must remain visible and static.'
 Assert-True ($Css -match '\.home-page \.home-identity[\s\S]*color:\s*var\(--signal\)') 'Homepage identity must use the signal token.'
 Assert-True ($Css -match '\.site-footer\s*\{[^}]*padding-block:\s*0\.75rem') 'Footer padding is not reduced globally.'
 Assert-True ($Css -match '\.site-footer \.page-grid > p\s*\{[^}]*grid-column:\s*1 / -1') 'Footer credit is not allowed to use the full grid width.'
-Assert-True ($Css -match '@media \(prefers-reduced-motion: reduce\)[\s\S]*\.home-marquee-track') 'Reduced-motion marquee stop is missing.'
+Assert-True ($Css -notmatch '@media \(prefers-reduced-motion: reduce\)[\s\S]*\.home-signal-ticker\s*\{\s*display:\s*none') 'Reduced-motion ticker must remain visible.'
+Assert-True ($Css -match '@media \(prefers-reduced-motion: reduce\)[\s\S]*\.home-signal-ticker span\s*\{[\s\S]*animation:\s*none !important' -and $Css -match '@media \(prefers-reduced-motion: reduce\)[\s\S]*transition:\s*none') 'Reduced-motion ticker must be static and transitions reset.'
 $ReducedMotionCss = [regex]::Match($Css, '@media \(prefers-reduced-motion: reduce\)[\s\S]*$').Value
-Assert-True ($ReducedMotionCss -match '\.home-page \.home-marquee-track' -and $ReducedMotionCss -notmatch '(?m)^\s*\*,\s*$') 'Reduced-motion marquee and canvas reset must stay scoped to .home-page.'
+Assert-True ($ReducedMotionCss -match '\.home-page \.home-hero' -and $ReducedMotionCss -notmatch '(?m)^\s*\*,\s*$') 'Reduced-motion reset must stay scoped to .home-page.'
 $Script = Get-Content -Raw -Encoding UTF8 (Join-Path $Root 'scripts/site.js')
 $SiteJs = Get-Content -Raw -Encoding UTF8 (Join-Path $Root 'scripts/site.js')
 Assert-True ($Script -match 'IntersectionObserver' -and $Script -match 'prefers-reduced-motion') 'Motion fallback is missing.'
 Assert-True ($Script -match 'split\(/\\s\+/\)' -and $Script -match 'includes\(current\)') 'Navigation route aliases are unsupported.'
-Assert-True ($Script -match 'home-signal-field' -and $Script -match 'requestAnimationFrame') 'Homepage signal-field initializer is missing.'
-$AsciiInitializer = [regex]::Match($Script, 'function initializeHomeSignalField[\s\S]*?initializeHomeSignalField\(\);').Value
-Assert-True (@(Select-String -Path (Join-Path $Root 'scripts/site.js') -Pattern 'ASCII_GLYPHS' -SimpleMatch).Count -gt 0) 'ASCII glyph constant is missing.'
-Assert-True (@(Select-String -Path (Join-Path $Root 'scripts/site.js') -Pattern 'MAX_FPS = 8' -SimpleMatch).Count -gt 0 -and @(Select-String -Path (Join-Path $Root 'scripts/site.js') -Pattern 'CELL_SIZE_DESKTOP = 44' -SimpleMatch).Count -gt 0 -and @(Select-String -Path (Join-Path $Root 'scripts/site.js') -Pattern 'CELL_SIZE_NARROW = 54' -SimpleMatch).Count -gt 0) 'ASCII density or cadence constants are missing.'
-Assert-True (@(Select-String -Path (Join-Path $Root 'scripts/site.js') -Pattern 'MAX_ORANGE_RATIO = 0.02' -SimpleMatch).Count -gt 0 -and @(Select-String -Path (Join-Path $Root 'scripts/site.js') -Pattern 'FRAME_INTERVAL' -SimpleMatch).Count -gt 0) 'ASCII orange cap or draw gate is missing.'
-Assert-True (@(Select-String -Path (Join-Path $Root 'scripts/site.js') -Pattern 'signalCadence' -SimpleMatch).Count -gt 0 -and @(Select-String -Path (Join-Path $Root 'scripts/site.js') -Pattern 'signalDensity' -SimpleMatch).Count -gt 0 -and @(Select-String -Path (Join-Path $Root 'scripts/site.js') -Pattern 'signalRootStarts' -SimpleMatch).Count -gt 0 -and @(Select-String -Path (Join-Path $Root 'scripts/site.js') -Pattern 'signalCancels' -SimpleMatch).Count -gt 0) 'ASCII runtime datasets are missing.'
-Assert-True (@(Select-String -Path (Join-Path $Root 'scripts/site.js') -Pattern 'return (value ^ (value >>> 16)) >>> 0;' -SimpleMatch).Count -gt 0 -and @(Select-String -Path (Join-Path $Root 'scripts/site.js') -Pattern 'ASCII_GLYPHS.length' -SimpleMatch).Count -gt 0) 'ASCII hash/index safety is missing.'
-Assert-True (@(Select-String -Path (Join-Path $Root 'scripts/site.js') -Pattern 'SAFE_ZONE_RATIO_NARROW = 1' -SimpleMatch).Count -gt 0 -and @(Select-String -Path (Join-Path $Root 'scripts/site.js') -Pattern 'narrowQuery.matches ? SAFE_ZONE_RATIO_NARROW : SAFE_ZONE_RATIO' -SimpleMatch).Count -gt 0) 'Narrow text-safe zone ratio is missing.'
-Assert-True ($AsciiInitializer -notmatch 'arc\(|lineTo\(|stroke\(') 'Legacy point-and-line Canvas drawing remains in the homepage initializer.'
+$SignalScript = Get-Content -Raw -Encoding UTF8 (Join-Path $Root 'scripts/home-signal-field.mjs')
+$SignalPanel = Join-Path $Root 'scripts/home-signal-control-panel.mjs'
+$SignalCore = Get-Content -Raw -Encoding UTF8 (Join-Path $Root 'scripts/home-signal-field-core.mjs')
+Assert-True (Test-Path $SignalPanel) 'Local SIGNAL LAB module is missing.'
+Assert-True ($SignalScript -match 'if \(isLocalSignalHost\(window\.location\.hostname\)\) \{[\s\S]*?import\("\.\/home-signal-control-panel\.mjs"\)') 'SIGNAL LAB must load through a local-host dynamic import.'
+Assert-True ($SignalScript -notmatch 'from "\.\/home-signal-control-panel\.mjs"') 'SIGNAL LAB must not use a production static import.'
+Assert-True ($SignalCore -match 'const MAX_SIGNAL_CELLS = 6400;' -and $SignalCore -match 'cells > 5000 \? 8 : cells > 3200 \? 10 : 12') 'ASCII grid budget or capped cadence contract is missing.'
+Assert-True ($SignalScript -match 'const frameInterval = 1000 / state\.renderPlan\.scheduledFps;') 'ASCII renderer must use its capped planned cadence.'
+Assert-True ($SignalScript -match 'motionQuery\.matches \|\| narrowQuery\.matches' -and $SignalScript -match 'if \(!motionQuery\.matches && !narrowQuery\.matches\) startLoop\(\);') 'Narrow and reduced-motion rendering must remain static.'
+Assert-True ($SignalScript -match 'if \(!context \|\| !maskContext\) \{[\s\S]*?canvas\.hidden = true;[\s\S]*?canvas\.dataset\.signalState = "fallback";[\s\S]*?return;' -and $SignalScript -match 'state\.fallback = true;') 'Canvas or mask failure must leave the native-text fallback active.'
+Assert-True ($SignalScript -match 'const verticalHalfLength = Math\.min\(72, bounds\.height \* 0\.1\);' -and $SignalScript -match 'context\.lineTo\(x, Math\.min\(bounds\.height, y \+ verticalHalfLength\)\);') 'Renderer scan crosshair must use a short vertical segment.'
 Write-Host 'PASS redesign contract'
 
