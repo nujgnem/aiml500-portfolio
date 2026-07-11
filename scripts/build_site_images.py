@@ -8,7 +8,6 @@ OUTPUT = ROOT / "assets" / "images"
 TIMELINE = ROOT / "ai-ml-timeline.png"
 CROPS = (
     ("timeline-work-wide.webp", (0, 1400, 3200, 3200), (1600, 900), 86),
-    ("timeline-case-detail.webp", (0, 1850, 3200, 4650), (1200, 1200), 86),
     ("timeline-poster.webp", None, (1000, 1500), 88),
 )
 

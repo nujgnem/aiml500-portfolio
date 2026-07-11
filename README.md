@@ -13,14 +13,12 @@ Desktop-first static portfolio for AIML-500 Machine Learning Fundamentals.
 ## Assets
 
 - `assets/images/timeline-work-wide.webp` - Work-page image.
-- `assets/images/timeline-case-detail.webp` - case-study detail image.
 - `assets/images/timeline-poster.webp` - case-study poster image.
-- `hero-ai-ml-portfolio.png` - preserved full-resolution course source.
 - `ai-ml-timeline.png` - preserved full-resolution Artifact 1.
 
 ## Local Validation
 
-- `scripts/build_site_images.py` regenerates the three timeline WebP images from the original Artifact 1 PNG.
+- `scripts/build_site_images.py` regenerates the two timeline WebP images from the original Artifact 1 PNG.
 - `scripts/verify_site.ps1` starts a temporary local server, checks every public URL, and stops the server.
 
 Run URL validation from the course root:

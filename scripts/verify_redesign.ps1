@@ -8,7 +8,6 @@ function Read-Page([string]$RelativePath) {
 }
 
 $Protected = @{
-  'hero-ai-ml-portfolio.png' = '381D27F19F5BF7872230D3C59E178D7295492285EA8A41BD17BAD3A963FD8F8B'
   'ai-ml-timeline.png' = '1F2391EC9239C0D336D3C48C6888A86F40A7C064FCDE40944B74EE2D9EB4DE56'
 }
 foreach ($Item in $Protected.GetEnumerator()) {
@@ -67,7 +66,7 @@ Assert-True ($Css -notmatch 'Georgia|Times New Roman|background-size:\s*48px') '
 Assert-True ($Css -match '\.skip-link' -and $Css -match '\.skip-link:focus') 'Skip-link focus styling is missing.'
 Assert-True ($Css -match '\.site-nav \{[\s\S]*font-size:\s*0\.8125rem') 'Primary navigation is not in the approved 13px range.'
 Assert-True ($Css -match '\.site-nav a\[aria-current="page"\] \{ color: var\(--ink\); \}') 'Light-header active navigation text lacks accessible contrast.'
-Assert-True ($Css -match '\.work-project > img \{[\s\S]*aspect-ratio:\s*16 / 9') 'Work image aspect ratio is missing.'
+Assert-True ($Css -match '\.work-card-media img \{[\s\S]*aspect-ratio:\s*16 / 9') 'Work image aspect ratio is missing.'
 Assert-True ($Css -match '\.poster-image \{[\s\S]*aspect-ratio:\s*2 / 3') 'Poster image aspect ratio is missing.'
 foreach ($Variable in @('--signal-cell-desktop:\s*44px', '--signal-cell-narrow:\s*54px', '--signal-outer-density:\s*\.14', '--signal-title-density:\s*\.78', '--signal-copy-clearance:\s*1\.25')) {
   Assert-True ($Css -match $Variable) "Missing homepage signal variable: $Variable"
