@@ -54,6 +54,10 @@ foreach ($Heading in $RequiredPromptHeadings) {
   Assert-True ($PromptCase -match ">\s*$([regex]::Escape($Heading))\s*</h2>") "Artifact 3 is missing required heading: $Heading"
 }
 Assert-True ([regex]::Matches($PromptCase, 'class="prompt-example"').Count -eq 3) 'Artifact 3 must show three visible product tests.'
+Assert-True ([regex]::Matches($PromptCase, 'class="conversation-turn').Count -eq 5) 'Artifact 3 must show a five-part complete conversation.'
+foreach ($ConversationMarker in @('01 / Original request','02 / Clarifying question','03 / User answer','04 / Finished prompt','05 / Test checklist')) {
+  Assert-True ($PromptCase -match [regex]::Escape($ConversationMarker)) "Artifact 3 is missing complete-conversation marker: $ConversationMarker"
+}
 Assert-True ($PromptCase -match 'creative technology hiring manager' -and $PromptCase -match 'Unique Value' -and $PromptCase -match 'Relevance') 'Artifact 3 audience or value proposition is missing.'
 Assert-True ($PromptCase -match 'g-6a482587af948191835fe6024e885565-generative-prompt-sensei' -and $PromptCase -match 'Workshop One 1.4 AI Lab') 'Artifact 3 product access or course evidence is missing.'
 Assert-True ($PromptCase -match 'ChatGPT supported prompt development, critique, and revision') 'Artifact 3 AI assistance disclosure is missing.'
@@ -79,7 +83,7 @@ Assert-True ($Css -match '\.site-nav \{[\s\S]*font-size:\s*0\.8125rem') 'Primary
 Assert-True ($Css -match '\.site-nav a\[aria-current="page"\] \{ color: var\(--ink\); \}') 'Light-header active navigation text lacks accessible contrast.'
 Assert-True ($Css -match '\.work-card-media img \{[\s\S]*aspect-ratio:\s*16 / 9') 'Work image aspect ratio is missing.'
 Assert-True ($Css -match '\.poster-image \{[\s\S]*aspect-ratio:\s*2 / 3') 'Poster image aspect ratio is missing.'
-Assert-True ($Css -match '\.prompt-field\s*\{[\s\S]*aspect-ratio:\s*16 / 9' -and $Css -match '\.prompt-example\s*\{' -and $Css -match '\.case-cta\s*\{') 'Artifact 3 visual or evidence styles are missing.'
+Assert-True ($Css -match '\.prompt-field\s*\{[\s\S]*aspect-ratio:\s*16 / 9' -and $Css -match '\.prompt-example\s*\{' -and $Css -match '\.prompt-conversation\s*\{' -and $Css -match '\.case-cta\s*\{') 'Artifact 3 visual or evidence styles are missing.'
 Assert-True ($Css -match '\.prompt-example-body\s*\{[\s\S]*grid-template-columns:\s*repeat\(2' -and $Css -match '@media \(max-width: 900px\)[\s\S]*\.prompt-example-body,[\s\S]*\.value-grid \{ grid-template-columns: 1fr; \}') 'Artifact 3 responsive evidence layout is missing.'
 foreach ($Variable in @('--signal-cell-desktop:\s*44px', '--signal-cell-narrow:\s*54px', '--signal-outer-density:\s*\.14', '--signal-title-density:\s*\.78', '--signal-copy-clearance:\s*1\.25')) {
   Assert-True ($Css -match $Variable) "Missing homepage signal variable: $Variable"

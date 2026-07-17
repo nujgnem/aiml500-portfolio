@@ -390,6 +390,22 @@ main { padding-top: 4.5rem; }
 .prompt-example blockquote { margin: 0; font-size: clamp(1.6rem, 3.1vw, 3.6rem); font-weight: 630; letter-spacing: -0.055em; line-height: 1; }
 .prompt-output { margin: 0; font-size: clamp(1rem, 1.3vw, 1.2rem); line-height: 1.52; }
 
+.prompt-conversation {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0;
+}
+
+.prompt-conversation > .conversation-turn { min-height: 0; }
+.conversation-user { grid-column: 1 / span 7; }
+.conversation-assistant { grid-column: 5 / -1; margin-top: -1px; }
+.prompt-conversation > .conversation-final { grid-column: 1 / -1; margin-top: -1px; background: var(--light-ink); color: var(--ink); }
+.prompt-conversation > .conversation-checklist { grid-column: 3 / -1; margin-top: -1px; background: var(--signal); color: var(--ink); }
+.conversation-copy { margin: 0; font-size: clamp(1.2rem, 2vw, 2rem); font-weight: 590; letter-spacing: -0.035em; line-height: 1.25; }
+.conversation-checklist .prompt-example-label { color: var(--ink); }
+.conversation-checklist ul { margin: 0; padding-left: 1.15rem; }
+.conversation-checklist li { padding-left: 0.4rem; font-size: clamp(1rem, 1.25vw, 1.15rem); line-height: 1.45; }
+.conversation-checklist li + li { margin-top: 0.8rem; }
+
 .process-rail { margin: 0; padding: 0; list-style: none; }
 .process-rail li { display: grid; grid-template-columns: minmax(8rem, 0.55fr) 1fr; gap: 1rem; padding-block: 1.1rem; border-top: 1px solid var(--ink); }
 .process-rail li:last-child { border-bottom: 1px solid var(--ink); }
@@ -898,6 +914,11 @@ body:has(.work-page) .site-nav a[aria-current="page"] { color: var(--light-ink);
   .prompt-example summary::after { grid-column: 2; grid-row: 1 / span 2; }
   .prompt-example-body,
   .value-grid { grid-template-columns: 1fr; }
+  .prompt-conversation { grid-template-columns: 1fr; }
+  .conversation-user,
+  .conversation-assistant,
+  .prompt-conversation > .conversation-final,
+  .prompt-conversation > .conversation-checklist { grid-column: 1; margin-top: -1px; }
   .process-rail li { grid-template-columns: 1fr; }
   .prompt-field-input { max-width: 90%; }
 

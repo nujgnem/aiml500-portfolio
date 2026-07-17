@@ -75,7 +75,7 @@
         <li><span>05</span><strong>Plan the test</strong></li>
       </ol>
       <div class="prompt-examples page-grid">
-        <details class="prompt-example" open>
+        <details class="prompt-example">
           <summary>
             <span>Test 01 / Image</span>
             <strong>Turn a broad visual idea into a controlled scene.</strong>
@@ -109,19 +109,35 @@
           </div>
         </details>
 
-        <details class="prompt-example">
+        <details class="prompt-example" open>
           <summary>
             <span>Test 03 / Responsible use</span>
-            <strong>Replace imitation with descriptive direction.</strong>
+            <strong>Follow a complete, responsible prompt conversation.</strong>
           </summary>
-          <div class="prompt-example-body">
-            <div>
-              <p class="prompt-example-label">Original request</p>
+          <div class="prompt-example-body prompt-conversation">
+            <div class="conversation-turn conversation-user">
+              <p class="prompt-example-label">01 / Original request</p>
               <blockquote>Create a prompt in the exact style of a living artist.</blockquote>
             </div>
-            <div>
-              <p class="prompt-example-label">Response direction</p>
-              <p class="prompt-output">I would not ask the model to copy a living artist's exact style. I would first identify the visual traits you want, such as a limited earth-tone palette, flattened perspective, visible brush texture, quiet domestic scenes, or dramatic side lighting. I can then build an original prompt around those traits without naming or imitating the artist.</p>
+            <div class="conversation-turn conversation-assistant">
+              <p class="prompt-example-label">02 / Clarifying question</p>
+              <p class="conversation-copy">I cannot help copy a living artist's exact style, but I can translate the qualities you like into an original direction. Which qualities matter most: palette, composition, texture, lighting, or subject matter?</p>
+            </div>
+            <div class="conversation-turn conversation-user">
+              <p class="prompt-example-label">03 / User answer</p>
+              <p class="conversation-copy">I want muted earth tones, a slightly flattened perspective, visible brush texture, a quiet domestic scene, and soft side lighting.</p>
+            </div>
+            <div class="conversation-turn conversation-final">
+              <p class="prompt-example-label">04 / Finished prompt</p>
+              <p class="prompt-output">Create an original editorial illustration of a person arranging cut flowers at a kitchen table in late-afternoon light. Use a muted palette of clay red, olive, ochre, and cream. Flatten the perspective slightly so the tabletop and room share the same shallow space. Keep visible dry-brush texture and simplified geometric shapes. The mood is quiet and observational. Use soft side light from one window and leave generous negative space around the figure. Do not reference or imitate a named artist. Avoid photorealism, glossy 3D rendering, text, logos, and ornate decorative detail.</p>
+            </div>
+            <div class="conversation-turn conversation-checklist">
+              <p class="prompt-example-label">05 / Test checklist</p>
+              <ul>
+                <li>Does the result use the requested palette, perspective, texture, and lighting?</li>
+                <li>Does the scene feel original rather than tied to one artist's signature subject or composition?</li>
+                <li>If the result drifts, revise the concrete visual traits instead of adding the artist's name.</li>
+              </ul>
             </div>
           </div>
         </details>
