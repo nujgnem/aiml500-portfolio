@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Generative Prompt Sensei, a prompt-engineering assistant designed by Mengjun Duan.">
+  <title>Generative Prompt Sensei Case Study | Mengjun Duan</title>
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../scripts/site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <div class="page-grid">
+      <a class="wordmark" href="../index.html">Mengjun Duan</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="../work.html" data-nav-page="work.html generative-prompt-sensei.html">Work <span class="status-dot" hidden></span></a>
+        <a href="../about.html" data-nav-page="about.html">About <span class="status-dot" hidden></span></a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content">
+    <header class="case-hero dark-section page-grid">
+      <p class="eyebrow">Selected Work / 03</p>
+      <h1>Generative Prompt Sensei</h1>
+      <p class="case-premise">A prompt-engineering assistant that turns rough ideas into model-specific prompts people can test, evaluate, and revise.</p>
+      <dl class="case-facts">
+        <div><dt>Year</dt><dd>2026</dd></div>
+        <div><dt>Role</dt><dd>Product concept, interaction design, prompt systems</dd></div>
+        <div><dt>Medium</dt><dd>Custom GPT and case study</dd></div>
+      </dl>
+    </header>
+
+    <section class="case-band page-grid" aria-labelledby="introduction-title">
+      <h2 id="introduction-title" class="section-title">Introduction</h2>
+      <div class="body-copy">
+        <p>Generative AI can produce text, images, and video from a short request, but the first result often misses the user's intent. The problem is usually not a lack of ideas. The user needs help translating an idea into instructions that fit the model and leave room for useful testing.</p>
+        <p>I designed Generative Prompt Sensei as a reusable coach for that translation. The product began in the AIML-500 AI Lab and became a Custom GPT with a defined interaction pattern, model-specific prompt frameworks, test scenarios, and responsible-use boundaries.</p>
+      </div>
+    </section>
+
+    <section class="case-band dark-section page-grid" aria-labelledby="description-title">
+      <h2 id="description-title" class="section-title">Description</h2>
+      <div>
+        <div class="body-copy">
+          <p>The assistant first identifies whether the user is working with a text, image, video, or multimodal model. It asks one focused question when the goal is unclear, then produces a copy-ready prompt, explains the main choices, offers variations, and closes with a test checklist.</p>
+          <p>This case study is written for a creative technology hiring manager who wants to see how I frame an AI product, define its behavior, and test whether the experience works across different kinds of generative media.</p>
+        </div>
+        <a class="case-cta" href="https://chatgpt.com/g/g-6a482587af948191835fe6024e885565-generative-prompt-sensei" target="_blank" rel="noreferrer">Open the Custom GPT <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="case-band page-grid" aria-labelledby="objective-title">
+      <h2 id="objective-title" class="section-title">Objective</h2>
+      <div>
+        <p class="body-copy">The goal was to make prompt revision easier to understand and repeat. A successful session should leave the user with a prompt they can run, a reason for each major choice, and a practical way to judge the next result.</p>
+        <ul class="detail-list prompt-objectives" aria-label="Product objectives">
+          <li><span>Control</span><span>Match the prompt structure to the target model instead of treating every generator the same.</span></li>
+          <li><span>Learning</span><span>Explain the revision briefly so the user can make the next decision without depending on the assistant.</span></li>
+          <li><span>Responsibility</span><span>Redirect unsafe or rights-sensitive requests toward specific, usable alternatives.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="prompt-lab dark-section" aria-labelledby="evidence-title">
+      <div class="prompt-lab-heading page-grid">
+        <h2 id="evidence-title" class="section-title">Product Evidence</h2>
+        <p>Three tests show how the same interaction system changes with the medium and the risk of the request. Each panel contains the original input and the response direction.</p>
+      </div>
+      <ol class="prompt-flow page-grid" aria-label="Generative Prompt Sensei interaction flow">
+        <li><span>01</span><strong>Identify model</strong></li>
+        <li><span>02</span><strong>Clarify intent</strong></li>
+        <li><span>03</span><strong>Build prompt</strong></li>
+        <li><span>04</span><strong>Explain choices</strong></li>
+        <li><span>05</span><strong>Plan the test</strong></li>
+      </ol>
+      <div class="prompt-examples page-grid">
+        <details class="prompt-example" open>
+          <summary>
+            <span>Test 01 / Image</span>
+            <strong>Turn a broad visual idea into a controlled scene.</strong>
+          </summary>
+          <div class="prompt-example-body">
+            <div>
+              <p class="prompt-example-label">Original request</p>
+              <blockquote>Create an image of a futuristic classroom where students learn with AI.</blockquote>
+            </div>
+            <div>
+              <p class="prompt-example-label">Structured prompt</p>
+              <p class="prompt-output">Create a realistic editorial photograph of a near-future classroom during a small-group lesson. Six college students sit around modular tables while an instructor uses a transparent wall display to compare two machine-learning predictions. Frame the room from eye level with students in the foreground and the interface visible behind them. Use soft daylight, neutral materials, and restrained blue accents. The technology should feel practical and already in use. Avoid science-fiction costumes, floating holograms, branded logos, extra text, distorted hands, and unreadable screens.</p>
+            </div>
+          </div>
+        </details>
+
+        <details class="prompt-example">
+          <summary>
+            <span>Test 02 / Video</span>
+            <strong>Add motion, camera direction, and continuity.</strong>
+          </summary>
+          <div class="prompt-example-body">
+            <div>
+              <p class="prompt-example-label">Original request</p>
+              <blockquote>A robot gardener waters plants in a greenhouse.</blockquote>
+            </div>
+            <div>
+              <p class="prompt-example-label">Structured prompt</p>
+              <p class="prompt-output">Create one continuous eight-second shot inside a humid greenhouse at sunrise. A compact gardening robot rolls slowly between two rows of tomato plants, stops beside a dry planter, raises a narrow watering arm, and releases a controlled stream at the base of the plant. Begin with a medium-wide view and move the camera laterally at the robot's pace. Keep the robot's shape, wheel count, and arm position consistent through the shot. Use warm backlight through condensation on the glass. Avoid cuts, sudden speed changes, flicker, extra limbs, and water passing through objects.</p>
+            </div>
+          </div>
+        </details>
+
+        <details class="prompt-example">
+          <summary>
+            <span>Test 03 / Responsible use</span>
+            <strong>Replace imitation with descriptive direction.</strong>
+          </summary>
+          <div class="prompt-example-body">
+            <div>
+              <p class="prompt-example-label">Original request</p>
+              <blockquote>Create a prompt in the exact style of a living artist.</blockquote>
+            </div>
+            <div>
+              <p class="prompt-example-label">Response direction</p>
+              <p class="prompt-output">I would not ask the model to copy a living artist's exact style. I would first identify the visual traits you want, such as a limited earth-tone palette, flattened perspective, visible brush texture, quiet domestic scenes, or dramatic side lighting. I can then build an original prompt around those traits without naming or imitating the artist.</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="case-band page-grid" aria-labelledby="process-title">
+      <h2 id="process-title" class="section-title">Process</h2>
+      <ol class="process-rail">
+        <li><span>01 / Empathize</span><p>I focused on creators and professionals who know the result they want but struggle to describe it in a form a model can use.</p></li>
+        <li><span>02 / Define</span><p>I narrowed the product from a general AI helper to a prompt coach for text, image, video, and multimodal systems.</p></li>
+        <li><span>03 / Prototype</span><p>I wrote explicit behavior rules, a standard response format, conversation starters, and separate frameworks for each medium.</p></li>
+        <li><span>04 / Test</span><p>I tested an image request, a video request, a text request, and a request that touched a responsible-use boundary.</p></li>
+        <li><span>05 / Revise</span><p>The tests led to two changes: ask one clarifying question when the model type is unknown, and always end with criteria for evaluating the result.</p></li>
+      </ol>
+    </section>
+
+    <section class="case-band dark-section page-grid" aria-labelledby="tools-title">
+      <h2 id="tools-title" class="section-title">Tools and Technologies</h2>
+      <ul class="detail-list" aria-label="Tools and technologies used">
+        <li><span>ChatGPT</span><span>Custom GPT builder, system instructions, conversation starters, and preview testing.</span></li>
+        <li><span>Prompt systems</span><span>Separate structures for text, image, video, and multimodal requests.</span></li>
+        <li><span>Design method</span><span>Empathy, problem definition, ideation, prototyping, scenario testing, and revision.</span></li>
+        <li><span>Web presentation</span><span>Semantic HTML, responsive CSS, accessible disclosure panels, and the shared portfolio visual system.</span></li>
+      </ul>
+    </section>
+
+    <section class="case-band page-grid" aria-labelledby="value-title">
+      <h2 id="value-title" class="section-title">Value Proposition</h2>
+      <div class="value-grid">
+        <article>
+          <p>Unique Value</p>
+          <h3>One coaching pattern, adjusted for the medium.</h3>
+          <p>The assistant does more than lengthen a prompt. It changes the structure based on whether control depends on words, composition, movement, continuity, or output format.</p>
+        </article>
+        <article>
+          <p>Relevance</p>
+          <h3>A small prototype that makes product judgment visible.</h3>
+          <p>The work shows how I turn an open-ended AI idea into rules, test cases, boundaries, and a user-facing experience. Those decisions matter in creative technology and AI product work.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-band dark-section page-grid" aria-labelledby="course-evidence-title">
+      <h2 id="course-evidence-title" class="section-title">Course Evidence</h2>
+      <div>
+        <ul class="detail-list" aria-label="Course evidence">
+          <li><span>Course</span><span>AIML-500 Machine Learning Fundamentals</span></li>
+          <li><span>Source artifact</span><span>Workshop One 1.4 AI Lab: Generative Prompt Sensei Custom GPT and process documentation</span></li>
+          <li><span>Audience</span><span>Creative technology hiring managers evaluating AI product thinking</span></li>
+          <li><span>Skills</span><span>Design thinking, prompt engineering, interaction design, testing, and responsible AI judgment</span></li>
+        </ul>
+        <p class="body-copy evidence-note">ChatGPT supported prompt development, critique, and revision. I selected the product direction, wrote and tested the interaction rules, reviewed the outputs, and made the final presentation decisions.</p>
+        <a class="case-cta" href="https://chatgpt.com/g/g-6a482587af948191835fe6024e885565-generative-prompt-sensei" target="_blank" rel="noreferrer">Use Generative Prompt Sensei <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="case-band page-grid" aria-labelledby="references-title">
+      <h2 id="references-title" class="section-title">References</h2>
+      <ul class="detail-list reference-list" aria-label="Project references">
+        <li><span>Course source</span><span>Indiana Wesleyan University. "AI Lab: Guided Activities." AIML-500 Machine Learning Fundamentals, Workshop One.</span></li>
+        <li><span>Research tool</span><span>Stanford Open Virtual Assistant Lab. <a href="https://storm.genie.stanford.edu/" target="_blank" rel="noreferrer">STORM <span aria-hidden="true">↗</span></a>.</span></li>
+        <li><span>Product</span><span><a href="https://chatgpt.com/g/g-6a482587af948191835fe6024e885565-generative-prompt-sensei" target="_blank" rel="noreferrer">Generative Prompt Sensei Custom GPT <span aria-hidden="true">↗</span></a>.</span></li>
+      </ul>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="page-grid"><p>Website created by Mengjun Duan.</p></div></footer>
+</body>
+</html>

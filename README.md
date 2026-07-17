@@ -7,7 +7,8 @@ Desktop-first static portfolio for AIML-500 Machine Learning Fundamentals.
 - `index.html` - concise portfolio homepage.
 - `projects/ai-ml-timeline.html` - Artifact 1 case study.
 - `projects/ml-vs-deep-learning.html` - Artifact 2 model-selection case study.
-- `work.html` - index linking to both portfolio artifacts.
+- `projects/generative-prompt-sensei.html` - Artifact 3 generative-tool prototype case study.
+- `work.html` - index linking to all three portfolio artifacts.
 - `styles.css` - shared typography, layout, and component styles.
 
 ## Assets
@@ -27,5 +28,5 @@ Run URL validation from the course root:
 powershell.exe -ExecutionPolicy Bypass -File 'aiml500-portfolio\scripts\verify_site.ps1'
 ```
 
-Artifact 2 is integrated locally. Public deployment and link visibility must be verified separately before course submission.
+Artifacts 1, 2, and 3 are integrated locally. Public deployment and link visibility must be verified separately before course submission.
 

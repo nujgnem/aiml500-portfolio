@@ -13,7 +13,7 @@ $Protected = @{
 foreach ($Item in $Protected.GetEnumerator()) {
   Assert-True ((Get-FileHash (Join-Path $Root $Item.Key) -Algorithm SHA256).Hash -eq $Item.Value) "Protected source changed: $($Item.Key)"
 }
-$Homepage = Read-Page 'index.html'; $Work = Read-Page 'work.html'; $About = Read-Page 'about.html'; $Case = Read-Page 'projects/ai-ml-timeline.html'
+$Homepage = Read-Page 'index.html'; $Work = Read-Page 'work.html'; $About = Read-Page 'about.html'; $Case = Read-Page 'projects/ai-ml-timeline.html'; $PromptCase = Read-Page 'projects/generative-prompt-sensei.html'
 Assert-True ($Homepage -match 'AI &amp; ML Portfolio') 'Homepage identity line is missing.'
 Assert-True ($Homepage -match 'A portfolio of research, visual systems, and experiments in artificial intelligence and machine learning\.') 'Homepage portfolio statement is missing.'
 Assert-True ($Homepage -notmatch 'timeline-home-detail\.webp|class="home-media"|View Work|<a href="about\.html">About</a>') 'Homepage still contains project preview or CTA links.'
@@ -24,7 +24,8 @@ Assert-True ($Homepage -match '<canvas class="home-signal-field" aria-hidden="tr
 Assert-True ($Homepage -match 'class="home-signal-ticker" aria-hidden="true"') 'Homepage signal ticker is missing or exposed to assistive technology.'
 Assert-True ($Homepage -notmatch 'home-text-safe-zone|home-marquee') 'Homepage still contains legacy safe-zone or marquee markup.'
 Assert-True ($Homepage -notmatch 'home-signal-lab|home-signal-control-panel\.mjs') 'SIGNAL LAB must be dynamically local-only, not homepage markup.'
-Assert-True ($Work -match 'Selected Work' -and $Work -match 'projects/ai-ml-timeline.html' -and $Work -match 'projects/ml-vs-deep-learning.html') 'Work-page project links are missing.'
+Assert-True ($Work -match 'Selected Work' -and $Work -match 'projects/ai-ml-timeline.html' -and $Work -match 'projects/ml-vs-deep-learning.html' -and $Work -match 'projects/generative-prompt-sensei.html') 'Work-page project links are missing.'
+Assert-True ([regex]::Matches($Work, 'class="work-card"').Count -eq 3 -and $Work -match 'Artifact 03 / Generative tool prototype') 'Work page must expose exactly three portfolio artifacts including Artifact 3.'
 $AboutStatements = @(
   "I'm a Creative Technologist interested in what happens when AI and machine learning leave the diagram and enter people's lives. A model starts with data, rules, and probabilities. Then it becomes an image tool, an interface, a recommendation, or a decision that affects someone else. That transition is where I like to work.",
   'I use research, visual thinking, and prototypes to make technical ideas easier to see and question. My work moves between AI/ML foundations, generative tools, automation, and interactive media. I pay attention to the choices a system carries: the data behind it, the assumptions built into it, what it makes visible, and when a person needs to step in.',
@@ -47,13 +48,23 @@ Assert-True ($AboutStatement.Length -gt 0) 'About statement wrapper is missing.'
 Assert-True ([regex]::Matches($AboutStatement, '<p>').Count -eq 3) 'About statement must contain exactly three paragraphs.'
 Assert-True ($About -notmatch '<dt>\s*Course\s*</dt>' -and $About -notmatch 'Contact|Email|LinkedIn|Resume') 'About page contains a Course field or contact placeholder.'
 Assert-True ($Case -match 'View full timeline' -and $Case -match 'AI assistance supported drafting and organization') 'Case-study evidence is missing.'
-foreach ($Page in @($Homepage, $Work, $About, $Case)) {
+$RequiredPromptHeadings = @('Introduction','Description','Objective','Product Evidence','Process','Tools and Technologies','Value Proposition','Course Evidence','References')
+Assert-True ([regex]::Matches($PromptCase, '<h1\b').Count -eq 1 -and $PromptCase -match '<h1>Generative Prompt Sensei</h1>') 'Artifact 3 title is missing or duplicated.'
+foreach ($Heading in $RequiredPromptHeadings) {
+  Assert-True ($PromptCase -match ">\s*$([regex]::Escape($Heading))\s*</h2>") "Artifact 3 is missing required heading: $Heading"
+}
+Assert-True ([regex]::Matches($PromptCase, 'class="prompt-example"').Count -eq 3) 'Artifact 3 must show three visible product tests.'
+Assert-True ($PromptCase -match 'creative technology hiring manager' -and $PromptCase -match 'Unique Value' -and $PromptCase -match 'Relevance') 'Artifact 3 audience or value proposition is missing.'
+Assert-True ($PromptCase -match 'g-6a482587af948191835fe6024e885565-generative-prompt-sensei' -and $PromptCase -match 'Workshop One 1.4 AI Lab') 'Artifact 3 product access or course evidence is missing.'
+Assert-True ($PromptCase -match 'ChatGPT supported prompt development, critique, and revision') 'Artifact 3 AI assistance disclosure is missing.'
+foreach ($Page in @($Homepage, $Work, $About, $Case, $PromptCase)) {
   Assert-True ($Page -match 'scripts/site.js') 'A public page does not load shared enhancement.'
   Assert-True ($Page -match 'href="index.html"|href="../index.html"') 'A public page lacks a wordmark route to Home.'
   Assert-True ($Page -match 'class="skip-link" href="#main-content"') 'A public page lacks a skip link to main content.'
   Assert-True ($Page -match '<main[^>]+id="main-content"') 'A public page lacks a main-content target.'
 }
 Assert-True ($Case -match 'data-nav-page="work.html ai-ml-timeline.html"') 'Case-study Work navigation does not declare its current route.'
+Assert-True ($PromptCase -match 'data-nav-page="work.html generative-prompt-sensei.html"') 'Artifact 3 Work navigation does not declare its current route.'
 Assert-True ($Work -match 'timeline-work-wide.webp" alt="Wide detail from the AI and machine learning timeline" width="1600" height="900" loading="lazy"') 'Work media lacks stable lazy-loaded dimensions.'
 Assert-True ($Case -match 'timeline-poster.webp" alt="Full radial timeline of AI and machine learning milestones from 1950 through 2026" width="1000" height="1500" loading="lazy"') 'Case poster lacks stable lazy-loaded dimensions.'
 foreach ($Asset in @('assets/fonts/Archivo-VariableFont_wdth,wght.woff2','assets/images/timeline-work-wide.webp','assets/images/timeline-poster.webp')) {
@@ -68,6 +79,8 @@ Assert-True ($Css -match '\.site-nav \{[\s\S]*font-size:\s*0\.8125rem') 'Primary
 Assert-True ($Css -match '\.site-nav a\[aria-current="page"\] \{ color: var\(--ink\); \}') 'Light-header active navigation text lacks accessible contrast.'
 Assert-True ($Css -match '\.work-card-media img \{[\s\S]*aspect-ratio:\s*16 / 9') 'Work image aspect ratio is missing.'
 Assert-True ($Css -match '\.poster-image \{[\s\S]*aspect-ratio:\s*2 / 3') 'Poster image aspect ratio is missing.'
+Assert-True ($Css -match '\.prompt-field\s*\{[\s\S]*aspect-ratio:\s*16 / 9' -and $Css -match '\.prompt-example\s*\{' -and $Css -match '\.case-cta\s*\{') 'Artifact 3 visual or evidence styles are missing.'
+Assert-True ($Css -match '\.prompt-example-body\s*\{[\s\S]*grid-template-columns:\s*repeat\(2' -and $Css -match '@media \(max-width: 900px\)[\s\S]*\.prompt-example-body,[\s\S]*\.value-grid \{ grid-template-columns: 1fr; \}') 'Artifact 3 responsive evidence layout is missing.'
 foreach ($Variable in @('--signal-cell-desktop:\s*44px', '--signal-cell-narrow:\s*54px', '--signal-outer-density:\s*\.14', '--signal-title-density:\s*\.78', '--signal-copy-clearance:\s*1\.25')) {
   Assert-True ($Css -match $Variable) "Missing homepage signal variable: $Variable"
 }
