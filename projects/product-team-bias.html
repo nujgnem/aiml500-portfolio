@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A responsible AI leadership article for creative AI product teams by Mengjun Duan.">
+  <title>When the Product Team Is Part of the Bias Problem | Mengjun Duan</title>
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../scripts/site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <div class="page-grid">
+      <a class="wordmark" href="../index.html">Mengjun Duan</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="../work.html" data-nav-page="work.html product-team-bias.html">Work <span class="status-dot" hidden></span></a>
+        <a href="../about.html" data-nav-page="about.html">About <span class="status-dot" hidden></span></a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content">
+    <header class="case-hero dark-section page-grid">
+      <p class="eyebrow">Selected Work / 04</p>
+      <h1>When the Product Team Is Part of the Bias Problem</h1>
+      <p class="case-premise">A responsible AI leadership article about finding human assumptions before they harden into product behavior.</p>
+      <dl class="case-facts">
+        <div><dt>Year</dt><dd>2026</dd></div>
+        <div><dt>Role</dt><dd>Responsible AI analysis, leadership, communication</dd></div>
+        <div><dt>Medium</dt><dd>Professional article</dd></div>
+      </dl>
+    </header>
+
+    <section class="case-band page-grid" aria-labelledby="introduction-title">
+      <h2 id="introduction-title" class="section-title">Introduction</h2>
+      <div class="body-copy">
+        <p>Creative AI teams often test new capabilities with the people and examples closest to them. A feature can appear to work well while leaving out users who were never part of the original review.</p>
+      </div>
+    </section>
+
+    <section class="case-band dark-section page-grid" aria-labelledby="description-title">
+      <h2 id="description-title" class="section-title">Description</h2>
+      <div class="body-copy">
+        <p>The article follows bias through the life of an AI product. It begins with the team's assumptions, moves through data and labeling choices, and ends with release decisions, appeals, monitoring, and correction.</p>
+        <p>The intended reader is a creative technologist, product lead, designer, or engineer who helps decide how a generative AI feature is defined, tested, and released.</p>
+      </div>
+    </section>
+
+    <section class="case-band page-grid" aria-labelledby="objective-title">
+      <h2 id="objective-title" class="section-title">Objective</h2>
+      <div class="body-copy">
+        <p>The goal is to make the human decisions around an AI product easier to see and question. A strong average result should not close the review if one group receives worse results or if affected users have no practical way to challenge an output.</p>
+      </div>
+    </section>
+
+    <section class="article-feature dark-section" aria-labelledby="article-title">
+      <div class="article-feature-heading page-grid">
+        <h2 id="article-title" class="section-title">The article</h2>
+        <p>A team can be careful and still mistake its own experience for the user's experience.</p>
+      </div>
+
+      <article class="editorial-article page-grid" aria-label="When the Product Team Is Part of the Bias Problem article">
+        <nav class="article-index" aria-label="Article sections">
+          <p>In this article</p>
+          <ol>
+            <li><a href="#fairness-responsibility">Fairness as responsibility</a></li>
+            <li><a href="#assumptions-behavior">Assumptions become behavior</a></li>
+            <li><a href="#before-development">Before development</a></li>
+            <li><a href="#before-release">Before release</a></li>
+            <li><a href="#after-release">After release</a></li>
+            <li><a href="#leadership-pressure">Leadership under pressure</a></li>
+          </ol>
+        </nav>
+
+        <div class="article-body">
+          <section id="fairness-responsibility" class="article-section" aria-labelledby="fairness-responsibility-title">
+            <p class="article-section-label">01 / Value</p>
+            <h3 id="fairness-responsibility-title">Fairness as a design responsibility</h3>
+            <p>In creative technology work, AI decisions can move quickly from an experiment into a workflow. Once that happens, the team's early assumptions can become difficult to see, especially when the product appears to work well for the people who built it.</p>
+            <blockquote class="article-pullquote">
+              <p>As a technology leader, I will treat fairness as a design responsibility that begins when the team defines the problem and continues after the product is released.</p>
+            </blockquote>
+            <p>I will make room for affected users to question the data and outputs, document where the system is unreliable, and pause or revise a release when the evidence shows avoidable harm.</p>
+          </section>
+
+          <section id="assumptions-behavior" class="article-section" aria-labelledby="assumptions-behavior-title">
+            <p class="article-section-label">02 / Risk</p>
+            <h3 id="assumptions-behavior-title">When assumptions become product behavior</h3>
+            <p>Bias can enter at every stage of an AI product. A dataset built from the most active customers may leave out older users, people with disabilities, or people who use English as an additional language. During labeling, words such as "professional," "safe," or "high quality" can carry assumptions that are cultural rather than objective. The product team may then optimize for engagement or speed without asking who receives worse results. An average accuracy score can hide a much higher error rate for one group, and a confident output may still be accepted as neutral when a person interprets it.</p>
+          </section>
+
+          <section id="before-development" class="article-section" aria-labelledby="before-development-title">
+            <p class="article-section-label">03 / Define</p>
+            <h3 id="before-development-title">Review assumptions before development</h3>
+            <p>I would begin with a data and assumption review before development. The team should name the intended users, document where the data came from, and identify who is missing or poorly represented. I would involve people from product, design, engineering, accessibility, and the affected user groups while the problem is still being defined. For labeling, I would give reviewers concrete examples, use more than one reviewer for subjective cases, and preserve disagreements for discussion instead of forcing every case into a convenient label.</p>
+          </section>
+
+          <section id="before-release" class="article-section" aria-labelledby="before-release-title">
+            <p class="article-section-label">04 / Test</p>
+            <h3 id="before-release-title">Test beyond the average before release</h3>
+            <p>Before release, I would test the product by subgroup and by realistic use case. Depending on the system, the team could compare false positive and false negative rates, task completion, refusals, or harmful outputs. A generative tool should also be tested with different dialects, accessibility needs, and cultural contexts. For a higher-risk product, I would add an independent review. The team should agree on acceptable gaps and stop rules before seeing the results. That makes it harder to excuse a weak result because a launch date is close.</p>
+          </section>
+
+          <section id="after-release" class="article-section" aria-labelledby="after-release-title">
+            <p class="article-section-label">05 / Respond</p>
+            <h3 id="after-release-title">Keep accountability after release</h3>
+            <p>After release, users need a clear way to report harm, request human review, or appeal an automated decision. One person should own each issue through resolution, and the team should record what changed. I would monitor overall performance and subgroup results, along with complaint patterns, confirmed harmful outputs, and resolution time. Each major model or data update should trigger another review. If a fairness gap crosses the team's stop rule, the team should limit the feature, roll back the update, or correct the data before expanding its use.</p>
+          </section>
+
+          <section id="leadership-pressure" class="article-section" aria-labelledby="leadership-pressure-title">
+            <p class="article-section-label">06 / Lead</p>
+            <h3 id="leadership-pressure-title">Leadership when the evidence challenges the plan</h3>
+            <p>These practices also affect how I would lead the change. When an employee or user identifies a biased result, I do not want the team to dismiss that feedback as resistance to AI. Schedule pressure and pride in the product can create their own confirmation bias. A responsible leader explains why the safeguards exist, gives people a safe way to challenge the system, and changes the plan when the evidence calls for it. That kind of response builds more trust than defending a system simply because the team worked hard on it.</p>
+          </section>
+        </div>
+      </article>
+    </section>
+
+    <section class="case-band page-grid" aria-labelledby="process-title">
+      <h2 id="process-title" class="section-title">Process</h2>
+      <div class="body-copy">
+        <p>I structured the article around the points where a team can still change the outcome: problem definition, data and labeling, pre-release evaluation, and post-release response. This keeps the argument tied to product decisions instead of abstract claims about ethics.</p>
+        <p>Each section names a risk and follows it with a decision or test. I kept the first-person voice because leadership responsibility needs an owner, especially when the evidence supports delaying or narrowing a release.</p>
+      </div>
+    </section>
+
+    <section class="case-band page-grid" aria-labelledby="value-title">
+      <h2 id="value-title" class="section-title">Value Proposition</h2>
+      <div class="value-grid">
+        <article>
+          <p>Unique Value</p>
+          <h3>The team is part of the system under review.</h3>
+          <p>The article treats bias as a product and leadership problem, not only a problem inside the dataset. It asks teams to examine their definitions, incentives, testing choices, and response to criticism.</p>
+        </article>
+        <article>
+          <p>Relevance</p>
+          <h3>Creative AI products make human judgment visible at scale.</h3>
+          <p>Generative systems depend on choices about acceptable content, quality, representation, and harm. Creative AI teams need ways to question those choices before and after release.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="page-grid"><p>Website created by Mengjun Duan.</p></div></footer>
+</body>
+</html>
