@@ -1079,6 +1079,34 @@ body:has(.work-page) .site-nav a[aria-current="page"] { color: var(--light-ink);
   line-height: 1.48;
 }
 
+.validation-comparison-note {
+  align-items: start;
+  margin-top: 1rem;
+  padding-block: 1.25rem;
+  border-top: 1px solid color-mix(in srgb, var(--light-ink) 28%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--light-ink) 28%, transparent);
+}
+
+.validation-comparison-note > p:first-child {
+  grid-column: 1 / span 3;
+  margin: 0;
+  color: var(--signal);
+  font-size: 0.7rem;
+  font-weight: 720;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.validation-comparison-note > p:last-child {
+  grid-column: 5 / -1;
+  margin: 0;
+  max-width: 54rem;
+  font-size: clamp(1.1rem, 1.55vw, 1.45rem);
+  font-weight: 590;
+  letter-spacing: -0.025em;
+  line-height: 1.35;
+}
+
 .error-evidence {
   align-items: end;
   margin-top: clamp(4rem, 9vw, 9rem);
@@ -1117,6 +1145,7 @@ body:has(.work-page) .site-nav a[aria-current="page"] { color: var(--light-ink);
 .error-bar-detected { background: var(--light-ink); color: var(--ink); }
 .error-bar b { font-size: clamp(2rem, 4vw, 5rem); font-weight: 650; letter-spacing: -0.06em; line-height: 0.9; }
 .error-bar small { font-size: 0.68rem; font-weight: 720; letter-spacing: 0.08em; text-transform: uppercase; }
+.tools-introduction { margin-bottom: clamp(2.5rem, 5vw, 5rem); }
 
 /* Task 5 public-page composition */
 .about-page { padding-block: clamp(4rem, 9vw, 9rem) clamp(5rem, 10vw, 10rem); }
@@ -1309,10 +1338,13 @@ body:has(.work-page) .site-nav a[aria-current="page"] { color: var(--light-ink);
   .validation-dashboard { grid-template-columns: 1fr; }
   .validation-metric,
   .validation-note,
+  .validation-comparison-note > p:first-child,
+  .validation-comparison-note > p:last-child,
   .error-evidence-copy,
   .error-bar { grid-column: 1; }
   .validation-metric,
   .validation-note { min-height: 20rem; }
+  .validation-comparison-note > p:last-child { margin-top: 0.75rem; }
   .error-bar { margin-top: 2.5rem; }
   .prompt-conversation { grid-template-columns: 1fr; }
   .conversation-user,

@@ -78,6 +78,11 @@
         </article>
       </div>
 
+      <div class="validation-comparison-note page-grid" role="note" aria-label="Metric comparison note">
+        <p>Read the contrast carefully</p>
+        <p>These numbers measure different things. The contrast shows how performance changes when both the generator and the question we care about change: overall accuracy on Stable Diffusion versus AI-image recall on Midjourney.</p>
+      </div>
+
       <div class="error-evidence page-grid" aria-label="Midjourney AI image detection result">
         <div class="error-evidence-copy">
           <p class="eyebrow">6,000 Midjourney images</p>
@@ -104,13 +109,16 @@
 
     <section class="case-band dark-section page-grid" aria-labelledby="tools-title">
       <h2 id="tools-title" class="section-title">Tools and Technologies</h2>
-      <ul class="detail-list" aria-label="Tools and technologies used">
-        <li><span>Model review</span><span>ResNet50, Vision Transformer, transfer learning, dropout, and uncertainty-based rejection.</span></li>
-        <li><span>Validation</span><span>Confusion matrices, accuracy, precision, recall, F1-score, calibration, and cross-generator testing.</span></li>
-        <li><span>Data</span><span>GenImage benchmark analysis, integrity checks, perceptual duplicate detection, and tagged stress sets.</span></li>
-        <li><span>Governance</span><span>NIST AI Risk Management Framework, human review, appeals, monitoring thresholds, and versioned retraining data.</span></li>
-        <li><span>Presentation</span><span>Semantic HTML, responsive CSS, accessible data graphics, and the shared portfolio design system.</span></li>
-      </ul>
+      <div>
+        <p class="body-copy tools-introduction">These methods helped me answer practical questions: what the model learned, where it failed, when it should defer a decision, and what a team should monitor after release.</p>
+        <ul class="detail-list" aria-label="Tools and technologies used">
+          <li><span>Model review</span><span>Compared ResNet50 and a Vision Transformer, then examined how dropout and uncertainty estimates could let the system defer a doubtful answer.</span></li>
+          <li><span>Validation</span><span>Used the confusion matrix and class-specific metrics to separate overall performance from the missed AI images that mattered in this use case.</span></li>
+          <li><span>Data</span><span>Reviewed the GenImage benchmark for class balance, unreadable files, duplicates, and realistic edits such as compression or cropping.</span></li>
+          <li><span>Governance</span><span>Used the NIST AI Risk Management Framework to plan human review, appeals, monitoring thresholds, and controlled retraining.</span></li>
+          <li><span>Presentation</span><span>Built the case study with semantic HTML, responsive CSS, and accessible data graphics.</span></li>
+        </ul>
+      </div>
     </section>
 
     <section class="case-band page-grid" aria-labelledby="value-title">

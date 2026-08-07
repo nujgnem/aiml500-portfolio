@@ -95,6 +95,7 @@ Assert-True ($ValidationCase -match 'data-nav-page="work.html ai-image-detection
 Assert-True ($Work -match 'timeline-work-wide.webp" alt="Wide detail from the AI and machine learning timeline" width="1600" height="900" loading="lazy"') 'Work media lacks stable lazy-loaded dimensions.'
 Assert-True ($TimelineCase -match 'timeline-poster.webp" alt="Full radial timeline of AI and machine learning milestones from 1950 through 2026" width="1000" height="1500" loading="lazy"') 'Case poster lacks stable lazy-loaded dimensions.'
 Assert-True ($ValidationCase -match '4,061 synthetic images passed as natural' -and $ValidationCase -match '1,939' -and $ValidationCase -match '32\.3') 'Artifact 5 is missing the cross-generator failure evidence.'
+Assert-True ($ValidationCase -match 'These numbers measure different things' -and $ValidationCase -match 'overall accuracy on Stable Diffusion versus AI-image recall on Midjourney') 'Artifact 5 is missing the peer-feedback metric clarification.'
 foreach ($Asset in @('assets/fonts/Archivo-VariableFont_wdth,wght.woff2','assets/images/timeline-work-wide.webp','assets/images/timeline-poster.webp')) {
   Assert-True (Test-Path (Join-Path $Root $Asset)) "Missing redesign asset: $Asset"
 }
@@ -109,7 +110,7 @@ Assert-True ($Css -match '\.work-card-media img \{[\s\S]*aspect-ratio:\s*16 / 9'
 Assert-True ($Css -match '\.poster-image \{[\s\S]*aspect-ratio:\s*2 / 3') 'Poster image aspect ratio is missing.'
 Assert-True ($Css -match '\.prompt-field\s*\{[\s\S]*aspect-ratio:\s*16 / 9' -and $Css -match '\.prompt-example\s*\{' -and $Css -match '\.prompt-conversation\s*\{' -and $Css -match '\.case-cta\s*\{') 'Artifact 3 visual or evidence styles are missing.'
 Assert-True ($Css -match '\.prompt-example-body\s*\{[\s\S]*grid-template-columns:\s*repeat\(2' -and $Css -match '@media \(max-width: 900px\)[\s\S]*\.prompt-example-body,[\s\S]*\.value-grid \{ grid-template-columns: 1fr; \}') 'Artifact 3 responsive evidence layout is missing.'
-Assert-True ($Css -match '\.validation-field\s*\{' -and $Css -match '\.validation-dashboard\s*\{' -and $Css -match '\.error-bar\s*\{') 'Artifact 5 validation graphics are missing.'
+Assert-True ($Css -match '\.validation-field\s*\{' -and $Css -match '\.validation-dashboard\s*\{' -and $Css -match '\.validation-comparison-note\s*\{' -and $Css -match '\.error-bar\s*\{') 'Artifact 5 validation graphics are missing.'
 Assert-True ($Css -match '@media \(max-width: 900px\)[\s\S]*\.validation-metric,[\s\S]*\.validation-note,[\s\S]*\.error-evidence-copy,[\s\S]*\.error-bar \{ grid-column: 1; \}') 'Artifact 5 responsive layout is missing.'
 foreach ($Variable in @('--signal-cell-desktop:\s*44px', '--signal-cell-narrow:\s*54px', '--signal-outer-density:\s*\.14', '--signal-title-density:\s*\.78', '--signal-copy-clearance:\s*1\.25')) {
   Assert-True ($Css -match $Variable) "Missing homepage signal variable: $Variable"
