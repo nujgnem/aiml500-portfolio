@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A model validation case study on cross-generator AI image detection by Mengjun Duan.">
+  <title>AI Image Detection Validation Case Study | Mengjun Duan</title>
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../scripts/site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <div class="page-grid">
+      <a class="wordmark" href="../index.html">Mengjun Duan</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="../work.html" data-nav-page="work.html ai-image-detection-validation.html">Work <span class="status-dot" hidden></span></a>
+        <a href="../about.html" data-nav-page="about.html">About <span class="status-dot" hidden></span></a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content">
+    <header class="case-hero dark-section page-grid">
+      <p class="eyebrow">Selected Work / 05</p>
+      <h1>When the Generator Changes</h1>
+      <p class="case-premise">A validation case study showing why near-perfect benchmark accuracy can collapse on images from a different generator.</p>
+      <dl class="case-facts">
+        <div><dt>Year</dt><dd>2026</dd></div>
+        <div><dt>Role</dt><dd>Model evaluation, risk analysis, technical communication</dd></div>
+        <div><dt>Medium</dt><dd>Validation case study</dd></div>
+      </dl>
+    </header>
+
+    <section class="case-band page-grid" aria-labelledby="introduction-title">
+      <h2 id="introduction-title" class="section-title">Introduction</h2>
+      <div class="body-copy">
+        <p>An AI image detector can look reliable when its test images resemble its training data. The harder question is whether it still works when a new generator leaves different visual traces.</p>
+        <p>I selected this project because it shows the kind of judgment I want to bring to creative AI work: read beyond the headline metric, trace what the positive class means, and look for the failure that a user would actually experience.</p>
+      </div>
+    </section>
+
+    <section class="case-band dark-section page-grid" aria-labelledby="description-title">
+      <h2 id="description-title" class="section-title">Description</h2>
+      <div class="body-copy">
+        <p>The case study examines research by Yumlembam et al. (2025) on classifiers that distinguish natural images from AI-generated images. The authors trained a ResNet50 detector on Stable Diffusion 1.5 and tested it on several other generators. They also combined uncertainty measures so the system could reject doubtful classifications.</p>
+        <p>The intended audience is a creative technologist, product lead, or evaluator who needs to decide whether an image detector is ready for a real workflow.</p>
+      </div>
+    </section>
+
+    <section class="case-band page-grid" aria-labelledby="objective-title">
+      <h2 id="objective-title" class="section-title">Objective</h2>
+      <div class="body-copy">
+        <p>The objective was to assess the study as a deployment decision. I reviewed data integrity, model choice, validation, metric interpretation, ethical risks, and post-deployment monitoring, then identified practices I would keep or change.</p>
+      </div>
+    </section>
+
+    <section class="validation-feature dark-section" aria-labelledby="evidence-title">
+      <div class="validation-heading page-grid">
+        <h2 id="evidence-title" class="section-title">Validation Evidence</h2>
+        <p>The strongest in-domain score hid the most important cross-generator failure.</p>
+      </div>
+
+      <div class="validation-dashboard page-grid">
+        <article class="validation-metric validation-metric-primary">
+          <p>Stable Diffusion test</p>
+          <strong>99.79<small>%</small></strong>
+          <span>Reported ResNet50 accuracy</span>
+        </article>
+        <article class="validation-metric validation-metric-alert">
+          <p>Midjourney test</p>
+          <strong>32.3<small>%</small></strong>
+          <span>AI-class recall calculated from the confusion matrix</span>
+        </article>
+        <article class="validation-note">
+          <p class="eyebrow">Interpretation</p>
+          <h3>The model learned one generator better than the task.</h3>
+          <p>The reported recall treated natural images as the positive class. Reframing the Midjourney result around AI-generated images shows that the detector caught only 1,939 of 6,000 synthetic images.</p>
+        </article>
+      </div>
+
+      <div class="error-evidence page-grid" aria-label="Midjourney AI image detection result">
+        <div class="error-evidence-copy">
+          <p class="eyebrow">6,000 Midjourney images</p>
+          <h3>4,061 synthetic images passed as natural.</h3>
+          <p>A single accuracy or F1 score does not explain this operational error. The class label and the confusion matrix do.</p>
+        </div>
+        <div class="error-bar" role="img" aria-label="Of 6,000 Midjourney AI images, 4,061 were missed and 1,939 were detected">
+          <span class="error-bar-missed" style="--share: 67.7%"><b>4,061</b><small>Missed</small></span>
+          <span class="error-bar-detected" style="--share: 32.3%"><b>1,939</b><small>Detected</small></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-band page-grid" aria-labelledby="process-title">
+      <h2 id="process-title" class="section-title">Process</h2>
+      <ol class="process-rail" aria-label="Validation review process">
+        <li><span>01 / Frame</span><p>Defined the stakeholders and the costs of missed synthetic images, false accusations, and forced decisions under uncertainty.</p></li>
+        <li><span>02 / Audit</span><p>Reviewed GenImage composition, class balance, preprocessing gaps, duplicate risk, and the difference between benchmark data and production traffic.</p></li>
+        <li><span>03 / Validate</span><p>Compared in-domain and cross-generator results, checked the threshold-selection procedure, and identified where test data also served a validation role.</p></li>
+        <li><span>04 / Recalculate</span><p>Read the confusion matrix using AI-generated content as the positive class and calculated 32.3% Midjourney AI recall.</p></li>
+        <li><span>05 / Monitor</span><p>Designed a pilot, metric thresholds, challenge sets for new generators, human review, appeals, and retraining rules.</p></li>
+      </ol>
+    </section>
+
+    <section class="case-band dark-section page-grid" aria-labelledby="tools-title">
+      <h2 id="tools-title" class="section-title">Tools and Technologies</h2>
+      <ul class="detail-list" aria-label="Tools and technologies used">
+        <li><span>Model review</span><span>ResNet50, Vision Transformer, transfer learning, dropout, and uncertainty-based rejection.</span></li>
+        <li><span>Validation</span><span>Confusion matrices, accuracy, precision, recall, F1-score, calibration, and cross-generator testing.</span></li>
+        <li><span>Data</span><span>GenImage benchmark analysis, integrity checks, perceptual duplicate detection, and tagged stress sets.</span></li>
+        <li><span>Governance</span><span>NIST AI Risk Management Framework, human review, appeals, monitoring thresholds, and versioned retraining data.</span></li>
+        <li><span>Presentation</span><span>Semantic HTML, responsive CSS, accessible data graphics, and the shared portfolio design system.</span></li>
+      </ul>
+    </section>
+
+    <section class="case-band page-grid" aria-labelledby="value-title">
+      <h2 id="value-title" class="section-title">Value Proposition</h2>
+      <div class="value-grid">
+        <article>
+          <p>Unique Value</p>
+          <h3>The metric is checked against the decision.</h3>
+          <p>The analysis does not accept a published score at face value. It checks the class definition, reconstructs the error that matters, and turns the result into a deployment recommendation.</p>
+        </article>
+        <article>
+          <p>Relevance</p>
+          <h3>Creative AI systems change faster than static tests.</h3>
+          <p>New generators, compression, editing, and user behavior can shift the input distribution. Teams need validation and monitoring that can expose those changes before automated labels harm creators or users.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-band dark-section page-grid" aria-labelledby="course-evidence-title">
+      <h2 id="course-evidence-title" class="section-title">Course Evidence</h2>
+      <div>
+        <ul class="detail-list" aria-label="Course evidence">
+          <li><span>Course</span><span>AIML-500 Machine Learning Fundamentals</span></li>
+          <li><span>Source artifact</span><span>Workshop Five 5.3 Model Validation and Verification report</span></li>
+          <li><span>Skills</span><span>Data integrity, model selection, validation design, metric interpretation, ethics, and production monitoring</span></li>
+          <li><span>AI assistance</span><span>ChatGPT and Codex supported organization and revision. I checked the paper, calculated AI-class recall, and made the final evaluation decisions.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="case-band page-grid" aria-labelledby="references-title">
+      <h2 id="references-title" class="section-title">References</h2>
+      <ol class="source-list reference-list">
+        <li>National Institute of Standards and Technology. (2023). <em>Artificial intelligence risk management framework (AI RMF 1.0)</em> (NIST AI 100-1). U.S. Department of Commerce. <a href="https://doi.org/10.6028/NIST.AI.100-1">https://doi.org/10.6028/NIST.AI.100-1</a></li>
+        <li>Yumlembam, R., Issac, B., Aslam, N., Babu, E. K., Collyer, J., &amp; Kennedy, F. (2025). Detection of AI generated images using combined uncertainty measures and particle swarm optimised rejection mechanism. <em>Scientific Reports, 15</em>, Article 44021. <a href="https://doi.org/10.1038/s41598-025-28572-8">https://doi.org/10.1038/s41598-025-28572-8</a></li>
+        <li>Zhu, M., Chen, H., Yan, Q., Huang, X., Lin, G., Li, W., Tu, Z., Hu, H., Hu, J., &amp; Wang, Y. (2023). GenImage: A million-scale benchmark for detecting AI-generated image. <em>Advances in Neural Information Processing Systems, 36</em>, 77771-77782. <a href="https://doi.org/10.52202/075280-3398">https://doi.org/10.52202/075280-3398</a></li>
+      </ol>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="page-grid"><p>Website created by Mengjun Duan.</p></div></footer>
+</body>
+</html>

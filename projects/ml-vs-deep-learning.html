@@ -31,16 +31,31 @@
       </dl>
     </header>
 
-    <section class="case-band page-grid" aria-labelledby="context-title">
-      <h2 id="context-title" class="section-title">Context</h2>
+    <section class="case-band page-grid" aria-labelledby="introduction-title">
+      <h2 id="introduction-title" class="section-title">Introduction</h2>
       <div class="body-copy">
         <p>Teams sometimes treat deep learning as the automatic next step for any AI project. That can add data, computing, and monitoring costs without solving the actual problem better.</p>
-        <p>This case study compares two applications that need different approaches. The goal is to show how the form of the data, the need for explanation, available resources, and the cost of a wrong answer affect model choice.</p>
+        <p>I selected this comparison because it shows model choice as a practical judgment about data and consequences, not a contest between an older and a newer technology.</p>
       </div>
     </section>
 
-    <section class="case-band dark-section page-grid" aria-labelledby="framework-title">
-      <h2 id="framework-title" class="section-title">Decision Framework</h2>
+    <section class="case-band dark-section page-grid" aria-labelledby="description-title">
+      <h2 id="description-title" class="section-title">Description</h2>
+      <div class="body-copy">
+        <p>The case study compares email spam filtering with manufacturing image inspection. The first application uses defined text and metadata features with traditional machine learning. The second uses a convolutional neural network to learn visual features from product images.</p>
+        <p>It is written for beginning AI/ML learners and nontechnical stakeholders who need to understand why a team would choose one approach over another.</p>
+      </div>
+    </section>
+
+    <section class="case-band page-grid" aria-labelledby="objective-title">
+      <h2 id="objective-title" class="section-title">Objective</h2>
+      <div class="body-copy">
+        <p>The objective was to build a simple decision framework around four questions: what form the data takes, how much explanation people need, which resources the project can support, and what happens when the model is wrong.</p>
+      </div>
+    </section>
+
+    <section class="case-band dark-section page-grid" aria-labelledby="process-title">
+      <h2 id="process-title" class="section-title">Process</h2>
       <ol class="detail-list decision-strip" aria-label="Model selection questions">
         <li><span>01 / Data</span><span>Is the useful information already structured, or must the model learn patterns from raw images, audio, or text?</span></li>
         <li><span>02 / Explanation</span><span>How clearly must a person trace and challenge the model's decision?</span></li>
@@ -49,8 +64,8 @@
       </ol>
     </section>
 
-    <section class="case-band page-grid" aria-labelledby="comparison-title">
-      <h2 id="comparison-title" class="section-title">Two Applications</h2>
+    <section class="case-band page-grid" aria-labelledby="project-evidence-title">
+      <h2 id="project-evidence-title" class="section-title">Project Evidence</h2>
       <div class="comparison-grid">
         <p class="comparison-intro">Traditional machine learning works from clues people choose; deep learning learns useful clues directly from many examples.</p>
         <article class="comparison-panel">
@@ -78,7 +93,18 @@
       </div>
     </section>
 
-    <section class="case-band dark-section page-grid" aria-labelledby="tradeoffs-title">
+    <section class="case-band dark-section page-grid" aria-labelledby="tools-title">
+      <h2 id="tools-title" class="section-title">Tools and Technologies</h2>
+      <ul class="detail-list" aria-label="Tools and technologies used">
+        <li><span>Traditional ML</span><span>Feature engineering, logistic regression, and decision-tree reasoning for structured signals.</span></li>
+        <li><span>Deep learning</span><span>Convolutional neural networks and automatic feature learning for image inspection.</span></li>
+        <li><span>Evaluation</span><span>False-positive and false-negative analysis, model maintainability, and monitoring needs.</span></li>
+        <li><span>Presentation</span><span>Semantic HTML, responsive CSS, and side-by-side comparison design.</span></li>
+        <li><span>AI assistance</span><span>ChatGPT supported learning, drafting, and organization. I reviewed the reasoning, examples, explanations, and final presentation.</span></li>
+      </ul>
+    </section>
+
+    <section class="case-band page-grid" aria-labelledby="tradeoffs-title">
       <h2 id="tradeoffs-title" class="section-title">Tradeoffs</h2>
       <div class="body-copy">
         <p>A deep network could analyze the full text of an email and may be worthwhile for a provider with extensive training data. A smaller organization may get a more maintainable system from engineered features that already capture the important signals.</p>
@@ -86,16 +112,24 @@
       </div>
     </section>
 
-    <section class="case-band page-grid" aria-labelledby="outcome-title">
-      <h2 id="outcome-title" class="section-title">Outcome</h2>
-      <div class="body-copy">
-        <p>The comparison led me away from asking which model is more advanced. I now start with the evidence available to the model and the consequence of a mistake. That makes the choice easier to explain to people who will fund, operate, or be affected by the system.</p>
-        <p>The spam filter benefits from a model the organization can retrain and inspect. The inspection system faces a different problem because the important clue is inside the image and may look different from one photograph to the next.</p>
+    <section class="case-band dark-section page-grid" aria-labelledby="value-title">
+      <h2 id="value-title" class="section-title">Value Proposition</h2>
+      <div class="value-grid">
+        <article>
+          <p>Unique Value</p>
+          <h3>The comparison starts with the decision, not the model name.</h3>
+          <p>Familiar applications make data form, explainability, resource needs, and error costs easier to compare without assuming a technical background.</p>
+        </article>
+        <article>
+          <p>Relevance</p>
+          <h3>Model choice becomes easier to defend.</h3>
+          <p>The framework helps the people who fund, operate, or experience an AI system understand why one approach fits the problem and what tradeoffs still need monitoring.</p>
+        </article>
       </div>
     </section>
 
-    <section class="case-band dark-section page-grid" aria-labelledby="evidence-title">
-      <h2 id="evidence-title" class="section-title">Course Evidence</h2>
+    <section class="case-band page-grid" aria-labelledby="course-evidence-title">
+      <h2 id="course-evidence-title" class="section-title">Course Evidence</h2>
       <div>
         <ul class="detail-list" aria-label="Project evidence">
           <li><span>Course</span><span>AIML-500 Machine Learning Fundamentals</span></li>
@@ -103,7 +137,7 @@
           <li><span>Audience</span><span>Beginning AI/ML learners and nontechnical stakeholders</span></li>
           <li><span>Skills</span><span>Model-selection reasoning, tradeoff analysis, and technical communication</span></li>
         </ul>
-        <p class="body-copy evidence-note">ChatGPT supported learning, drafting, and organization. I reviewed the reasoning, selected the examples, revised the explanations, and made the final presentation decisions.</p>
+        <p class="body-copy evidence-note">A general reader's feedback led me to replace an unclear pixels-and-columns comparison with a direct explanation: traditional machine learning works from clues people choose, while deep learning learns useful clues from many examples.</p>
       </div>
     </section>
   </main>
